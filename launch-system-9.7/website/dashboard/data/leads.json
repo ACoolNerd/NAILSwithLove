@@ -1,0 +1,233 @@
+[
+  {
+    "osm_id": 4691396789,
+    "name": "Peluqueria ego ti",
+    "address": "Peluqueria ego ti, Calle 71, San Luis II, Comuna 6",
+    "neighborhood": "Comuna 6",
+    "lat": "3.4877116",
+    "lon": "-76.4901663",
+    "category": "Peluquería",
+    "status": "Pendiente",
+    "notes": ""
+  },
+  {
+    "osm_id": 2182757618,
+    "name": "Parada MIO - Avenida 15 Oeste con Calle 9A Oe (Peluqueria)",
+    "address": "Parada MIO - Avenida 15 Oeste con Calle 9A Oe (Peluqueria), Avenida 15 Oeste, El Aguacatal, Comuna 1",
+    "neighborhood": "Comuna 1",
+    "lat": "3.4601790",
+    "lon": "-76.5530478",
+    "category": "Salón de Estética",
+    "status": "Pendiente",
+    "notes": ""
+  },
+  {
+    "osm_id": 449989195,
+    "name": "Javier Castillo Peluquería",
+    "address": "Javier Castillo Peluquería, 29N - 16, Calle 29A Norte, San Vicente",
+    "neighborhood": "Comuna 2",
+    "lat": "3.4707960",
+    "lon": "-76.5272051",
+    "category": "Peluquería",
+    "status": "Pendiente",
+    "notes": ""
+  },
+  {
+    "osm_id": 5657516637,
+    "name": "Jf Jhon Fredy peluquería",
+    "address": "Jf Jhon Fredy peluquería, 21-22, Avenida 6 Norte, Versalles",
+    "neighborhood": "Comuna 2",
+    "lat": "3.4631632",
+    "lon": "-76.5303562",
+    "category": "Peluquería",
+    "status": "Pendiente",
+    "notes": ""
+  },
+  {
+    "osm_id": 6426796132,
+    "name": "Peluquería Yuli",
+    "address": "Peluquería Yuli, Carrera 43A, El Morichal, Comuna 15",
+    "neighborhood": "Comuna 15",
+    "lat": "3.3996922",
+    "lon": "-76.5060787",
+    "category": "Peluquería",
+    "status": "Pendiente",
+    "notes": ""
+  },
+  {
+    "osm_id": 6426796133,
+    "name": "Marynelly Estetica y Peluquería",
+    "address": "Marynelly Estetica y Peluquería, Carrera 43A, El Morichal, Comuna 15",
+    "neighborhood": "Comuna 15",
+    "lat": "3.3994004",
+    "lon": "-76.5058025",
+    "category": "Peluquería",
+    "status": "Pendiente",
+    "notes": ""
+  },
+  {
+    "osm_id": 1094014686,
+    "name": "Corpo Bello Medical Spa",
+    "address": "Corpo Bello Medical Spa, Calle 2 Oeste, El Peñón, Comuna 3",
+    "neighborhood": "Comuna 3",
+    "lat": "3.4502209",
+    "lon": "-76.5416640",
+    "category": "Salón de Estética",
+    "status": "Pendiente",
+    "notes": ""
+  },
+  {
+    "osm_id": 2717350245,
+    "name": "Odonto Spa",
+    "address": "Odonto Spa, Calle 52, El Sena, Comuna 5",
+    "neighborhood": "Comuna 5",
+    "lat": "3.4687045",
+    "lon": "-76.5024054",
+    "category": "Salón de Estética",
+    "status": "Pendiente",
+    "notes": ""
+  },
+  {
+    "osm_id": 1230826096,
+    "name": "CUERPO & COLOR CLÍNICA - SPA LTDA",
+    "address": "CUERPO & COLOR CLÍNICA - SPA LTDA, Carrera 66, El Gran Limonar, Comuna 17",
+    "neighborhood": "Comuna 17",
+    "lat": "3.3980331",
+    "lon": "-76.5441003",
+    "category": "Salón de Estética",
+    "status": "Pendiente",
+    "notes": ""
+  },
+  {
+    "osm_id": 1230830791,
+    "name": "SALUD ARMONÍA Y BELLEZA SPA LTDA U",
+    "address": "SALUD ARMONÍA Y BELLEZA SPA LTDA U, Carrera 62C, Cañaveralejo - Seguros Patria, Comuna 19",
+    "neighborhood": "Comuna 19",
+    "lat": "3.4025966",
+    "lon": "-76.5423916",
+    "category": "Salón de Estética",
+    "status": "Pendiente",
+    "notes": ""
+  },
+  {
+    "osm_id": 1230832011,
+    "name": "Aaa Estar Bien Spa",
+    "address": "Aaa Estar Bien Spa, Carrera 38, Eucarístico, Comuna 19",
+    "neighborhood": "Comuna 19",
+    "lat": "3.4235821",
+    "lon": "-76.5409644",
+    "category": "Salón de Estética",
+    "status": "Pendiente",
+    "notes": ""
+  },
+  {
+    "osm_id": 1230823539,
+    "name": "CINCO ELEMENTOS CENTRO HOLÍSTICO & SPA",
+    "address": "CINCO ELEMENTOS CENTRO HOLÍSTICO & SPA, Avenida 7 Norte, Santa Mónica Recidencial, Comuna 2",
+    "neighborhood": "Comuna 2",
+    "lat": "3.4681122",
+    "lon": "-76.5317496",
+    "category": "Salón de Estética",
+    "status": "Pendiente",
+    "notes": ""
+  },
+  {
+    "osm_id": 5490036913,
+    "name": "Charry Estetica Dental",
+    "address": "Charry Estetica Dental, Carrera 70, Los Portales - Nuevo Rey, Comuna 17",
+    "neighborhood": "Comuna 17",
+    "lat": "3.3934870",
+    "lon": "-76.5414664",
+    "category": "Salón de Estética",
+    "status": "Pendiente",
+    "notes": ""
+  },
+  {
+    "osm_id": 1230825894,
+    "name": "Carmenza Flórez Estética Integral E.U.",
+    "address": "Carmenza Flórez Estética Integral E.U., Carrera 1, Los Parques Barranquilla, Comuna 5",
+    "neighborhood": "Comuna 5",
+    "lat": "3.4804532",
+    "lon": "-76.4990141",
+    "category": "Salón de Estética",
+    "status": "Pendiente",
+    "notes": ""
+  },
+  {
+    "osm_id": 1230831042,
+    "name": "CLÍNICA DE ORTODONCIA Y ODONTOLOGÍA ESTÉTICA COES LTDA",
+    "address": "CLÍNICA DE ORTODONCIA Y ODONTOLOGÍA ESTÉTICA COES LTDA, Carrera 56, Cañaverales - Los Samanes, Comuna 17",
+    "neighborhood": "Comuna 17",
+    "lat": "3.4021423",
+    "lon": "-76.5265432",
+    "category": "Salón de Estética",
+    "status": "Pendiente",
+    "notes": ""
+  },
+  {
+    "osm_id": 3029111762,
+    "name": "Estética Dental Calima",
+    "address": "Estética Dental Calima, Carrera 5 Norte, Calima, Comuna 4",
+    "neighborhood": "Comuna 4",
+    "lat": "3.4837771",
+    "lon": "-76.5018688",
+    "category": "Salón de Estética",
+    "status": "Pendiente",
+    "notes": ""
+  },
+  {
+    "osm_id": 1230826233,
+    "name": "ROSEMBERT CENTER-CENTRO DE ESTÉTICA FACIAL Y CORPORAL",
+    "address": "ROSEMBERT CENTER-CENTRO DE ESTÉTICA FACIAL Y CORPORAL, Carrera 23, Aranjuez, Comuna 9",
+    "neighborhood": "Comuna 9",
+    "lat": "3.4358675",
+    "lon": "-76.5235756",
+    "category": "Salón de Estética",
+    "status": "Pendiente",
+    "notes": ""
+  },
+  {
+    "osm_id": 1230829278,
+    "name": "CENTRO DE ESTÉTICA FACIAL Y CORPORAL WORLD TV # 1",
+    "address": "CENTRO DE ESTÉTICA FACIAL Y CORPORAL WORLD TV # 1, Avenida 6 Norte, La Flora, Comuna 2",
+    "neighborhood": "Comuna 2",
+    "lat": "3.4786785",
+    "lon": "-76.5254876",
+    "category": "Salón de Estética",
+    "status": "Pendiente",
+    "notes": ""
+  },
+  {
+    "osm_id": 1230831391,
+    "name": "CENTRO DE ORTODONCIA Y ODONTOLOGÍA ESTÉTICA LTDA",
+    "address": "CENTRO DE ORTODONCIA Y ODONTOLOGÍA ESTÉTICA LTDA, Calle 10, San Pedro, Comuna 3",
+    "neighborhood": "Comuna 3",
+    "lat": "3.4518213",
+    "lon": "-76.5339130",
+    "category": "Salón de Estética",
+    "status": "Pendiente",
+    "notes": ""
+  },
+  {
+    "osm_id": 1230821619,
+    "name": "CENTRO DE ESTÉTICA CARMEN GALINDO E.U.",
+    "address": "CENTRO DE ESTÉTICA CARMEN GALINDO E.U., Calle 9, Cañaveralejo - Seguros Patria, Comuna 19",
+    "neighborhood": "Comuna 19",
+    "lat": "3.4023253",
+    "lon": "-76.5439422",
+    "category": "Salón de Estética",
+    "status": "Pendiente",
+    "notes": ""
+  },
+  {
+    "osm_id": 1230822664,
+    "name": "REHABILITACIÓN IMPLANTOLOGIA Y ESTÉTICA ORAL E U",
+    "address": "REHABILITACIÓN IMPLANTOLOGIA Y ESTÉTICA ORAL E U, Calle 6, Eucarístico, Comuna 19",
+    "neighborhood": "Comuna 19",
+    "lat": "3.4231958",
+    "lon": "-76.5411610",
+    "category": "Salón de Estética",
+    "status": "Pendiente",
+    "notes": ""
+  }
+]

@@ -1,0 +1,1233 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nails with Love | Business Dashboard</title>
+  
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --burgundy: #7A2036;
+      --burgundy-dark: #3A1420;
+      --gold: #C9A227;
+      --blush: #FBEEE6;
+      --bg: #FFF9F5;
+      --white: #FFFFFF;
+      --shadow: 0 8px 30px rgba(58, 20, 32, 0.08);
+      --border: 1px solid #ead5d7;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Outfit', sans-serif;
+    }
+    
+    body {
+      background-color: var(--bg);
+      color: var(--burgundy-dark);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    /* Login Glassmorphism Overlay */
+    #login-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(135deg, rgba(122, 32, 54, 0.8), rgba(58, 20, 32, 0.95));
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 1;
+      transition: var(--transition);
+    }
+    
+    .login-card {
+      background: rgba(255, 249, 245, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 24px;
+      padding: 40px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      transform: translateY(0);
+      transition: var(--transition);
+    }
+    
+    .login-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      color: var(--burgundy);
+      margin-bottom: 8px;
+    }
+    
+    .login-subtitle {
+      font-size: 14px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+    
+    .input-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    
+    .input-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--burgundy-dark);
+      margin-bottom: 6px;
+      display: block;
+    }
+    
+    .input-field {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: var(--border);
+      background: var(--white);
+      color: var(--burgundy-dark);
+      font-size: 16px;
+      outline: none;
+      transition: var(--transition);
+    }
+    
+    .input-field:focus {
+      border-color: var(--burgundy);
+      box-shadow: 0 0 0 3px rgba(122, 32, 54, 0.15);
+    }
+    
+    .login-btn {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: var(--burgundy);
+      color: var(--white);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(122, 32, 54, 0.25);
+      transition: var(--transition);
+    }
+    
+    .login-btn:hover {
+      background: var(--burgundy-dark);
+      transform: translateY(-2px);
+    }
+    
+    .error-msg {
+      color: #D32F2F;
+      font-size: 14px;
+      margin-top: 15px;
+      display: none;
+    }
+    
+    /* Main Layout */
+    .app-container {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    /* Sidebar */
+    .sidebar {
+      width: 260px;
+      background: var(--burgundy-dark);
+      color: var(--white);
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      z-index: 100;
+    }
+    
+    .sidebar-header {
+      margin-bottom: 40px;
+      padding-left: 10px;
+    }
+    
+    .sidebar-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: var(--white);
+    }
+    
+    .sidebar-logo span {
+      color: var(--gold);
+    }
+    
+    .sidebar-menu {
+      list-style: none;
+      flex-grow: 1;
+    }
+    
+    .menu-item {
+      margin-bottom: 8px;
+    }
+    
+    .menu-link {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: var(--transition);
+    }
+    
+    .menu-link:hover, .menu-link.active {
+      color: var(--white);
+      background: rgba(251, 238, 230, 0.1);
+    }
+    
+    .menu-link.active {
+      border-left: 4px solid var(--gold);
+      background: rgba(251, 238, 230, 0.15);
+    }
+    
+    .menu-link svg {
+      margin-right: 12px;
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+    
+    .logout-btn {
+      color: #EAD5D7;
+      margin-top: auto;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Main Content */
+    .main-content {
+      margin-left: 260px;
+      flex-grow: 1;
+      padding: 40px;
+      max-width: 1280px;
+    }
+    
+    .header-area {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    
+    .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      color: var(--burgundy);
+    }
+    
+    .user-pill {
+      background: var(--blush);
+      border: var(--border);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--burgundy);
+    }
+    
+    /* Dashboard Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    
+    .metric-card {
+      background: var(--white);
+      border: var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .metric-card:hover {
+      transform: translateY(-4px);
+    }
+    
+    .metric-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #71636a;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    
+    .metric-value {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--burgundy);
+      margin-bottom: 4px;
+    }
+    
+    .metric-trend {
+      font-size: 12px;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    
+    /* Views Wrapper */
+    .view-section {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+    
+    .view-section.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Cards and Elements */
+    .card-panel {
+      background: var(--white);
+      border: var(--border);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      margin-bottom: 30px;
+    }
+    
+    .panel-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--burgundy-dark);
+      margin-bottom: 20px;
+    }
+    
+    /* Table Styling */
+    .data-table-container {
+      overflow-x: auto;
+    }
+    
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    
+    .data-table th {
+      padding: 16px;
+      font-weight: 600;
+      border-bottom: 2px solid var(--blush);
+      color: #71636a;
+      font-size: 14px;
+    }
+    
+    .data-table td {
+      padding: 16px;
+      border-bottom: 1px solid var(--blush);
+      font-size: 15px;
+    }
+    
+    .data-table tr:hover {
+      background-color: rgba(251, 238, 230, 0.2);
+    }
+    
+    /* Form Grid */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .form-btn {
+      padding: 12px 24px;
+      background: var(--burgundy);
+      color: var(--white);
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .form-btn:hover {
+      background: var(--burgundy-dark);
+    }
+    
+    /* Pill Badges */
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    
+    .badge-success { background: #E8F5E9; color: #2E7D32; }
+    .badge-warning { background: #FFF8E1; color: #F57F17; }
+    .badge-info { background: #E3F2FD; color: #1565C0; }
+    
+    /* Action Buttons */
+    .btn-action {
+      background: none;
+      border: 1px solid var(--burgundy);
+      color: var(--burgundy);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .btn-action:hover {
+      background: var(--burgundy);
+      color: var(--white);
+    }
+    
+    .btn-action-primary {
+      background: var(--gold);
+      border: 1px solid var(--gold);
+      color: var(--burgundy-dark);
+    }
+    
+    .btn-action-primary:hover {
+      background: var(--burgundy-dark);
+      border-color: var(--burgundy-dark);
+      color: var(--white);
+    }
+    
+    /* Marketing Content Hub Tabs */
+    .tab-bar {
+      display: flex;
+      border-bottom: 2px solid var(--blush);
+      margin-bottom: 25px;
+    }
+    
+    .tab-btn {
+      padding: 12px 20px;
+      background: none;
+      border: none;
+      font-size: 15px;
+      font-weight: 600;
+      color: #71636a;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: var(--transition);
+    }
+    
+    .tab-btn.active {
+      color: var(--burgundy);
+      border-bottom-color: var(--burgundy);
+    }
+    
+    .marketing-card {
+      border: 1px solid var(--blush);
+      border-radius: 12px;
+      padding: 20px;
+      background: var(--bg);
+      margin-bottom: 18px;
+    }
+    
+    .marketing-title {
+      font-weight: 600;
+      color: var(--burgundy);
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+    
+    .marketing-body {
+      font-size: 14.5px;
+      line-height: 1.5;
+      color: var(--burgundy-dark);
+      margin-bottom: 12px;
+      white-space: pre-line;
+    }
+    
+    .copy-success-popup {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--burgundy-dark);
+      color: var(--white);
+      padding: 10px 24px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 1000;
+    }
+    
+    .copy-success-popup.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    
+    @media(max-width: 768px) {
+      .sidebar {
+        width: 70px;
+        padding: 20px 10px;
+      }
+      .sidebar-logo span, .menu-link span {
+        display: none;
+      }
+      .main-content {
+        margin-left: 70px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login Section -->
+  <div id="login-overlay">
+    <div class="login-card">
+      <div class="login-logo">Nails with Love</div>
+      <div class="login-subtitle">Yesenia's Boutique</div>
+      <div class="input-group">
+        <label class="input-label">Código de Acceso</label>
+        <input type="password" id="passcode-field" class="input-field" placeholder="••••" maxlength="4">
+      </div>
+      <button class="login-btn" onclick="validateLogin()">Entrar al Sistema</button>
+      <div class="error-msg" id="login-error">Código incorrecto. Intenta de nuevo.</div>
+    </div>
+  </div>
+
+  <!-- Main App Layout -->
+  <div class="app-container">
+    
+    <!-- Sidebar Menu -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 class="sidebar-logo">Nails<span>Love</span></h2>
+      </div>
+      
+      <ul class="sidebar-menu">
+        <li class="menu-item">
+          <a href="#" class="menu-link active" onclick="switchView('inicio', this)">
+            <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            <span>Inicio</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="menu-link" onclick="switchView('citas', this)">
+            <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+            <span>Citas</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="menu-link" onclick="switchView('clientes', this)">
+            <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V20h14v-3.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V20h6v-3.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            <span>Clientes</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="menu-link" onclick="switchView('prospectos', this)">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <span>Prospectos Cali</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="menu-link" onclick="switchView('marketing', this)">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+            <span>Marketing Hub</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="menu-link" onclick="switchView('reclutamiento', this)">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            <span>Reclutamiento</span>
+          </a>
+        </li>
+        <li class="menu-item" style="margin-top: auto;">
+          <a href="#" class="menu-link logout-btn" onclick="logout()">
+            <svg viewBox="0 0 24 24"><path d="M13 3h-2v10h2V3zm4.78 1.58l-1.42 1.42C18.2 7.05 19 8.95 19 11c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.05.8-3.95 2.64-5.01l-1.42-1.42C3.8 5.95 3 8.37 3 11c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.63-.8-5.05-2.22-6.42z"/></svg>
+            <span>Cerrar Sesión</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+    
+    <!-- Main Screen -->
+    <main class="main-content">
+      
+      <!-- Top Title and User Info -->
+      <div class="header-area">
+        <h1 class="page-title" id="view-title">Panel de Control</h1>
+        <div class="user-pill">Admin: Yesenia</div>
+      </div>
+      
+      <!-- VIEW: INICIO -->
+      <section id="view-inicio" class="view-section active">
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-title">Ingresos Mensuales</div>
+            <div class="metric-value">COP $1.850.000</div>
+            <div class="metric-trend">↑ 14% vs mes anterior</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-title">Clientes Activos</div>
+            <div class="metric-value">28</div>
+            <div class="metric-trend">4 nuevas esta semana</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-title">Salones Aliados</div>
+            <div class="metric-value">12</div>
+            <div class="metric-trend">2 completados hoy</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-title">Candidatas Academias</div>
+            <div class="metric-value">4</div>
+            <div class="metric-trend">SENA y Carrusel</div>
+          </div>
+        </div>
+        
+        <div class="card-panel">
+          <h3 class="panel-title">Citas de Hoy</h3>
+          <div class="data-table-container">
+            <table class="data-table" id="today-appointments-table">
+              <thead>
+                <tr>
+                  <th>Cliente</th>
+                  <th>Servicio</th>
+                  <th>Hora</th>
+                  <th>Barrio</th>
+                  <th>Valor</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      
+      <!-- VIEW: CITAS -->
+      <section id="view-citas" class="view-section">
+        <div class="card-panel">
+          <h3 class="panel-title">Agendar Nueva Cita</h3>
+          <div class="form-grid">
+            <div class="input-group">
+              <label class="input-label">Cliente</label>
+              <input type="text" id="appointment-client" class="input-field" placeholder="Nombre completo">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Servicio</label>
+              <select id="appointment-service" class="input-field">
+                <option value="Manicure Semipermanente">Manicure Semipermanente</option>
+                <option value="Gel X Extensiones">Gel X Extensiones</option>
+                <option value="Acrílico Full Set">Acrílico Full Set</option>
+                <option value="Combo Manicure + Pedicure">Combo Manicure + Pedicure</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label class="input-label">Fecha</label>
+              <input type="date" id="appointment-date" class="input-field">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Hora</label>
+              <input type="time" id="appointment-time" class="input-field">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Barrio</label>
+              <input type="text" id="appointment-barrio" class="input-field" placeholder="Ej: Ciudad Jardín">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Valor (COP)</label>
+              <input type="number" id="appointment-value" class="input-field" placeholder="55000">
+            </div>
+          </div>
+          <button class="form-btn" onclick="addAppointment()">Agendar Cita</button>
+        </div>
+        
+        <div class="card-panel">
+          <h3 class="panel-title">Listado General de Citas</h3>
+          <div class="data-table-container">
+            <table class="data-table" id="all-appointments-table">
+              <thead>
+                <tr>
+                  <th>Cliente</th>
+                  <th>Servicio</th>
+                  <th>Fecha/Hora</th>
+                  <th>Barrio</th>
+                  <th>Valor</th>
+                  <th>Estado</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      
+      <!-- VIEW: CLIENTES -->
+      <section id="view-clientes" class="view-section">
+        <div class="card-panel">
+          <h3 class="panel-title">Nuevo Perfil de Cliente</h3>
+          <div class="form-grid">
+            <div class="input-group">
+              <label class="input-label">Nombre</label>
+              <input type="text" id="client-name" class="input-field" placeholder="Nombre completo">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Teléfono</label>
+              <input type="text" id="client-phone" class="input-field" placeholder="+57 3...">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Barrio</label>
+              <input type="text" id="client-barrio" class="input-field" placeholder="Ej: El Peñón">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Diseño Favorito / Notas</label>
+              <input type="text" id="client-notes" class="input-field" placeholder="Esmalte semipermanente french...">
+            </div>
+          </div>
+          <button class="form-btn" onclick="addClient()">Registrar Cliente</button>
+        </div>
+        
+        <div class="card-panel">
+          <h3 class="panel-title">Directorio CRM de Clientes</h3>
+          <div class="data-table-container">
+            <table class="data-table" id="crm-table">
+              <thead>
+                <tr>
+                  <th>Cliente</th>
+                  <th>Teléfono</th>
+                  <th>Barrio</th>
+                  <th>Preferencias / Notas</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      
+      <!-- VIEW: PROSPECTOS CALI -->
+      <section id="view-prospectos" class="view-section">
+        <div class="card-panel">
+          <h3 class="panel-title">Directorio de Salones y Spas Aliados en Cali</h3>
+          <p style="margin-bottom: 20px; font-size:14.5px; color:#71636a;">
+            Datos obtenidos localmente mediante geolocalización. Úsalos para coordinar alianzas comerciales y comisiones del 10% por referido.
+          </p>
+          <div class="data-table-container">
+            <table class="data-table" id="leads-table">
+              <thead>
+                <tr>
+                  <th>Establecimiento</th>
+                  <th>Categoría</th>
+                  <th>Ubicación / Barrio</th>
+                  <th>Dirección</th>
+                  <th>Estado</th>
+                  <th>Contacto B2B</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Populated dynamically from leads.json -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      
+      <!-- VIEW: MARKETING HUB -->
+      <section id="view-marketing" class="view-section">
+        <div class="tab-bar">
+          <button class="tab-btn active" onclick="switchMarketingTab('ads', this)">Anuncios Redes Sociales</button>
+          <button class="tab-btn" onclick="switchMarketingTab('whatsapp_flows', this)">Guiones WhatsApp Business</button>
+          <button class="tab-btn" onclick="switchMarketingTab('outreach', this)">Pitches B2B Alianzas</button>
+        </div>
+        
+        <div class="card-panel" id="marketing-container">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+      
+      <!-- VIEW: RECLUTAMIENTO -->
+      <section id="view-reclutamiento" class="view-section">
+        <div class="card-panel">
+          <h3 class="panel-title">Nueva Candidata (Egresada Academia)</h3>
+          <div class="form-grid">
+            <div class="input-group">
+              <label class="input-label">Nombre Completo</label>
+              <input type="text" id="recruit-name" class="input-field" placeholder="Nombre completo">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Academia</label>
+              <select id="recruit-academy" class="input-field">
+                <option value="SENA Cali">SENA Cali</option>
+                <option value="Academia Carrusel">Academia Carrusel</option>
+                <option value="Academia L'Esthétique">Academia L'Esthétique</option>
+                <option value="Independiente">Independiente</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label class="input-label">Teléfono</label>
+              <input type="text" id="recruit-phone" class="input-field" placeholder="+57 3...">
+            </div>
+          </div>
+          <button class="form-btn" onclick="addRecruit()">Registrar Candidata</button>
+        </div>
+        
+        <div class="card-panel">
+          <h3 class="panel-title">Pipeline de Contratación</h3>
+          <div class="data-table-container">
+            <table class="data-table" id="recruits-table">
+              <thead>
+                <tr>
+                  <th>Candidata</th>
+                  <th>Academia</th>
+                  <th>Contacto</th>
+                  <th>Estado</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      
+    </main>
+  </div>
+
+  <!-- Clipboard Popup Notification -->
+  <div id="copy-popup" class="copy-success-popup">Copiado al portapapeles</div>
+
+  <script>
+    // Mock Database for CRM, Calendar, and Recruits (stored in localStorage)
+    const defaultAppointments = [
+      { id: 1, client: "Camila Restrepo", service: "Manicure Semipermanente", date: "2026-07-13", time: "09:00", barrio: "Ciudad Jardín", value: 55000, status: "Confirmada" },
+      { id: 2, client: "Isabella Gómez", service: "Gel X Extensiones", date: "2026-07-13", time: "14:30", barrio: "El Peñón", value: 120000, status: "Completada" },
+      { id: 3, client: "Valeria Ortiz", service: "Combo Manicure + Pedicure", date: "2026-07-14", time: "10:00", barrio: "Granada", value: 95000, status: "Confirmada" }
+    ];
+    
+    const defaultClients = [
+      { id: 1, name: "Camila Restrepo", phone: "+57 315 765 4321", barrio: "Ciudad Jardín", notes: "Prefiere base fortalecedora y tonos blush" },
+      { id: 2, name: "Isabella Gómez", phone: "+57 320 987 6543", barrio: "El Peñón", notes: "Usa extensiones Gel-X almond medianas" },
+      { id: 3, name: "Valeria Ortiz", phone: "+57 312 456 7890", barrio: "Granada", notes: "Manicure semipermanente con diseño minimalista de flores" }
+    ];
+    
+    const defaultRecruits = [
+      { id: 1, name: "Natalia Bermúdez", academy: "SENA Cali", phone: "+57 311 556 7788", status: "Entrevistada" },
+      { id: 2, name: "Gabriela Rojas", academy: "Academia Carrusel", phone: "+57 318 445 2233", status: "Pendiente" }
+    ];
+
+    // Local Storage Initializers
+    if (!localStorage.getItem("nw_appointments")) localStorage.setItem("nw_appointments", JSON.stringify(defaultAppointments));
+    if (!localStorage.getItem("nw_clients")) localStorage.setItem("nw_clients", JSON.stringify(defaultClients));
+    if (!localStorage.getItem("nw_recruits")) localStorage.setItem("nw_recruits", JSON.stringify(defaultRecruits));
+    
+    // Auth Validation
+    function validateLogin() {
+      const passcode = document.getElementById("passcode-field").value;
+      if (passcode === "1234") {
+        document.getElementById("login-overlay").style.opacity = "0";
+        setTimeout(() => {
+          document.getElementById("login-overlay").style.display = "none";
+        }, 300);
+        localStorage.setItem("nw_authenticated", "true");
+        loadData();
+      } else {
+        const err = document.getElementById("login-error");
+        err.style.display = "block";
+        setTimeout(() => { err.style.display = "none"; }, 3000);
+      }
+    }
+    
+    // Check Auth State on Load
+    window.addEventListener("load", () => {
+      if (localStorage.getItem("nw_authenticated") === "true") {
+        document.getElementById("login-overlay").style.display = "none";
+        loadData();
+      }
+    });
+    
+    function logout() {
+      localStorage.removeItem("nw_authenticated");
+      document.getElementById("login-overlay").style.display = "flex";
+      document.getElementById("login-overlay").style.opacity = "1";
+    }
+
+    // Tab switcher
+    function switchView(viewId, el) {
+      document.querySelectorAll(".view-section").forEach(s => s.classList.remove("active"));
+      document.querySelectorAll(".menu-link").forEach(l => l.classList.remove("active"));
+      
+      document.getElementById(`view-${viewId}`).classList.add("active");
+      el.classList.add("active");
+      
+      // Update Title
+      const titles = {
+        inicio: "Panel de Control",
+        citas: "Gestión de Citas",
+        clientes: "Directorio CRM",
+        prospectos: "Prospectos de Negocios en Cali",
+        marketing: "Marketing Content Hub",
+        reclutamiento: "Reclutamiento de Graduadas"
+      };
+      document.getElementById("view-title").innerText = titles[viewId] || "Dashboard";
+    }
+
+    // Dynamic Lists Loader
+    function loadData() {
+      renderAppointments();
+      renderClients();
+      renderRecruits();
+      fetchDashboardLeads();
+      loadMarketingHub();
+    }
+
+    // 1. Appointments Rendering
+    function renderAppointments() {
+      const appts = JSON.parse(localStorage.getItem("nw_appointments"));
+      const today = "2026-07-13"; // Hardcoded mockup date matching current state
+      
+      const todayBody = document.querySelector("#today-appointments-table tbody");
+      const allBody = document.querySelector("#all-appointments-table tbody");
+      
+      todayBody.innerHTML = "";
+      allBody.innerHTML = "";
+      
+      appts.forEach(a => {
+        const badgeClass = a.status === "Completada" ? "badge-success" : (a.status === "Confirmada" ? "badge-warning" : "badge-info");
+        const row = `
+          <tr>
+            <td><b>${a.client}</b></td>
+            <td>${a.service}</td>
+            <td>${a.date} / ${a.time}</td>
+            <td>${a.barrio}</td>
+            <td>COP $${a.value.toLocaleString()}</td>
+            <td><span class="badge ${badgeClass}">${a.status}</span></td>
+            <td>
+              <button class="btn-action" onclick="toggleAppointmentStatus(${a.id})">Avanzar Estado</button>
+            </td>
+          </tr>
+        `;
+        
+        allBody.innerHTML += row;
+        if (a.date === today) {
+          todayBody.innerHTML += `
+            <tr>
+              <td><b>${a.client}</b></td>
+              <td>${a.service}</td>
+              <td>${a.time}</td>
+              <td>${a.barrio}</td>
+              <td>COP $${a.value.toLocaleString()}</td>
+              <td><span class="badge ${badgeClass}">${a.status}</span></td>
+            </tr>
+          `;
+        }
+      });
+    }
+    
+    function addAppointment() {
+      const client = document.getElementById("appointment-client").value;
+      const service = document.getElementById("appointment-service").value;
+      const date = document.getElementById("appointment-date").value;
+      const time = document.getElementById("appointment-time").value;
+      const barrio = document.getElementById("appointment-barrio").value;
+      const value = parseInt(document.getElementById("appointment-value").value) || 55000;
+      
+      if (!client || !date || !time || !barrio) {
+        alert("Completa todos los campos obligatorios.");
+        return;
+      }
+      
+      const appts = JSON.parse(localStorage.getItem("nw_appointments"));
+      appts.push({ id: Date.now(), client, service, date, time, barrio, value, status: "Confirmada" });
+      localStorage.setItem("nw_appointments", JSON.stringify(appts));
+      
+      // Reset Fields
+      document.getElementById("appointment-client").value = "";
+      document.getElementById("appointment-barrio").value = "";
+      document.getElementById("appointment-value").value = "";
+      
+      renderAppointments();
+      alert("Cita agendada correctamente.");
+    }
+    
+    function toggleAppointmentStatus(id) {
+      const appts = JSON.parse(localStorage.getItem("nw_appointments"));
+      const app = appts.find(a => a.id === id);
+      if (app) {
+        if (app.status === "Confirmada") app.status = "Completada";
+        else if (app.status === "Completada") app.status = "Pagada";
+        else app.status = "Confirmada";
+        
+        localStorage.setItem("nw_appointments", JSON.stringify(appts));
+        renderAppointments();
+      }
+    }
+
+    // 2. Clients CRM
+    function renderClients() {
+      const cls = JSON.parse(localStorage.getItem("nw_clients"));
+      const body = document.querySelector("#crm-table tbody");
+      body.innerHTML = "";
+      
+      cls.forEach(c => {
+        body.innerHTML += `
+          <tr>
+            <td><b>${c.name}</b></td>
+            <td>${c.phone}</td>
+            <td>${c.barrio}</td>
+            <td>${c.notes}</td>
+            <td>
+              <button class="btn-action btn-action-primary" onclick="openWhatsApp('${c.phone}', 'Hola ${c.name}, te saluda Yesenia de Nails with Love. 💅 Espero que estés super bien. Te escribo para consultar...')">Escribir</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+    
+    function addClient() {
+      const name = document.getElementById("client-name").value;
+      const phone = document.getElementById("client-phone").value;
+      const barrio = document.getElementById("client-barrio").value;
+      const notes = document.getElementById("client-notes").value;
+      
+      if (!name || !phone || !barrio) {
+        alert("Completa los campos principales.");
+        return;
+      }
+      
+      const cls = JSON.parse(localStorage.getItem("nw_clients"));
+      cls.push({ id: Date.now(), name, phone, barrio, notes });
+      localStorage.setItem("nw_clients", JSON.stringify(cls));
+      
+      document.getElementById("client-name").value = "";
+      document.getElementById("client-phone").value = "";
+      document.getElementById("client-barrio").value = "";
+      document.getElementById("client-notes").value = "";
+      
+      renderClients();
+      alert("Cliente registrado.");
+    }
+
+    // 3. Recruits
+    function renderRecruits() {
+      const recruits = JSON.parse(localStorage.getItem("nw_recruits"));
+      const body = document.querySelector("#recruits-table tbody");
+      body.innerHTML = "";
+      
+      recruits.forEach(r => {
+        const badgeClass = r.status === "Contratada" ? "badge-success" : (r.status === "Entrevistada" ? "badge-info" : "badge-warning");
+        body.innerHTML += `
+          <tr>
+            <td><b>${r.name}</b></td>
+            <td>${r.academy}</td>
+            <td>${r.phone}</td>
+            <td><span class="badge ${badgeClass}">${r.status}</span></td>
+            <td>
+              <button class="btn-action" onclick="toggleRecruitStatus(${r.id})">Estado</button>
+              <button class="btn-action btn-action-primary" onclick="openWhatsApp('${r.phone}', 'Hola ${r.name}, te habla Yesenia de Nails with Love. Vi tu portafolio de manicurista y me llamó mucho la atención...')">Contactar</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+    
+    function addRecruit() {
+      const name = document.getElementById("recruit-name").value;
+      const academy = document.getElementById("recruit-academy").value;
+      const phone = document.getElementById("recruit-phone").value;
+      
+      if (!name || !phone) {
+        alert("Llena los campos obligatorios.");
+        return;
+      }
+      
+      const recruits = JSON.parse(localStorage.getItem("nw_recruits"));
+      recruits.push({ id: Date.now(), name, academy, phone, status: "Pendiente" });
+      localStorage.setItem("nw_recruits", JSON.stringify(recruits));
+      
+      document.getElementById("recruit-name").value = "";
+      document.getElementById("recruit-phone").value = "";
+      
+      renderRecruits();
+      alert("Candidata registrada.");
+    }
+    
+    function toggleRecruitStatus(id) {
+      const recruits = JSON.parse(localStorage.getItem("nw_recruits"));
+      const rec = recruits.find(r => r.id === id);
+      if (rec) {
+        if (rec.status === "Pendiente") rec.status = "Entrevistada";
+        else if (rec.status === "Entrevistada") rec.status = "Contratada";
+        else rec.status = "Pendiente";
+        
+        localStorage.setItem("nw_recruits", JSON.stringify(recruits));
+        renderRecruits();
+      }
+    }
+
+    // 4. Prospectos B2B leads
+    let localLeadsData = [];
+    function fetchDashboardLeads() {
+      fetch('data/leads.json')
+        .then(res => res.json())
+        .then(data => {
+          localLeadsData = data;
+          renderLeads();
+        })
+        .catch(err => {
+          // Fallback static leads if file not built yet
+          localLeadsData = [
+            { osm_id: 1, name: "Peluquería Ego Ti", category: "Peluquería", neighborhood: "San Luis II", address: "Calle 71, San Luis II, Cali", status: "Pendiente" },
+            { osm_id: 2, name: "Javier Castillo Peluquería", category: "Peluquería", neighborhood: "San Vicente", address: "29N-16, Calle 29A Norte, Cali", status: "Pendiente" },
+            { osm_id: 3, name: "Jf Jhon Fredy peluquería", category: "Peluquería", neighborhood: "Versalles", address: "21-22, Avenida 6 Norte, Cali", status: "Contactado" },
+            { osm_id: 4, name: "Studio Vanity Beauty", category: "Salón de Estética", neighborhood: "Guayaquil", address: "22A-67, Calle 12, Cali", status: "Pendiente" }
+          ];
+          renderLeads();
+        });
+    }
+    
+    function renderLeads() {
+      const body = document.querySelector("#leads-table tbody");
+      body.innerHTML = "";
+      
+      localLeadsData.forEach(l => {
+        const badgeClass = l.status === "Socio" ? "badge-success" : (l.status === "Contactado" ? "badge-info" : "badge-warning");
+        body.innerHTML += `
+          <tr>
+            <td><b>${l.name}</b></td>
+            <td>${l.category}</td>
+            <td>${l.neighborhood}</td>
+            <td>${l.address}</td>
+            <td><span class="badge ${badgeClass}">${l.status}</span></td>
+            <td>
+              <button class="btn-action" onclick="toggleLeadStatus(${l.osm_id})">Estado</button>
+              <button class="btn-action btn-action-primary" onclick="copyPitchB2B('${l.name}')">Copiar Pitch B2B</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+    
+    function toggleLeadStatus(id) {
+      const lead = localLeadsData.find(l => l.osm_id === id);
+      if (lead) {
+        if (lead.status === "Pendiente") lead.status = "Contactado";
+        else if (lead.status === "Contactado") lead.status = "Socio";
+        else lead.status = "Pendiente";
+        renderLeads();
+      }
+    }
+    
+    function copyPitchB2B(salonName) {
+      const pitch = `¡Hola ${salonName}! Un gusto saludarte. Soy Yesenia, fundadora de Nails with Love en Cali. 🌸 He visto el excelente trabajo que hacen, y me encantaría proponerles una alianza sencilla y sin costos: nosotros atendemos a sus clientas de manicure y pedicure a domicilio bajo un sistema de referidos con comisión del 10% para ustedes por cada cliente que agende. ¿Te interesaría coordinar una visita corta esta semana? ¡Muchas gracias!`;
+      navigator.clipboard.writeText(pitch);
+      showCopyPopup();
+    }
+
+    // 5. Marketing Hub Loader
+    let marketingTemplates = {};
+    function loadMarketingHub() {
+      fetch('data/marketing_content.json')
+        .then(res => res.json())
+        .then(data => {
+          marketingTemplates = data;
+          renderMarketingTab('ads');
+        })
+        .catch(err => {
+          // Mock data fallback
+          marketingTemplates = {
+            ads: [
+              { title: "Promo Primera Cita Boutique", hook: "💅 Uñas boutique hechas con amor en casa.", body: "¡Hola Cali! Disfruta de semipermanente con diseño por solo COP $55.000.", cta: "Agenda por WhatsApp al 3108486630" }
+            ],
+            whatsapp_flows: [
+              { stage: "Entrada Cliente", trigger: "Auto Link", template: "¡Hola Yesenia! Quiero conocer tus servicios..." }
+            ],
+            outreach: [
+              { channel: "Propuesta de Alianza B2B", target: "Negocios locales", template: "Hola [Nombre], te saluda Yesenia de Nails with Love..." }
+            ]
+          };
+          renderMarketingTab('ads');
+        });
+    }
+    
+    function switchMarketingTab(type, el) {
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      el.classList.add("active");
+      renderMarketingTab(type);
+    }
+    
+    function renderMarketingTab(type) {
+      const container = document.getElementById("marketing-container");
+      container.innerHTML = "";
+      
+      const items = marketingTemplates[type] || [];
+      items.forEach(item => {
+        let title = item.title || item.stage || item.channel;
+        let details = item.target || item.trigger || "";
+        let bodyText = item.template || `${item.hook}\n\n${item.body}\n\n${item.cta}\n${item.tags || ""}`;
+        
+        container.innerHTML += `
+          <div class="marketing-card">
+            <div class="marketing-title">${title} <span style="font-size:12px; font-weight:normal; color:#71636a; margin-left:10px;">${details}</span></div>
+            <div class="marketing-body" id="text-${title.replace(/\s+/g, '-')}">${bodyText}</div>
+            <button class="btn-action btn-action-primary" onclick="copyText('text-${title.replace(/\s+/g, '-')}')">Copiar Texto</button>
+          </div>
+        `;
+      });
+    }
+
+    // Helper functions
+    function copyText(elementId) {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text);
+      showCopyPopup();
+    }
+    
+    function showCopyPopup() {
+      const popup = document.getElementById("copy-popup");
+      popup.classList.add("show");
+      setTimeout(() => popup.classList.remove("show"), 2000);
+    }
+    
+    function openWhatsApp(phone, text) {
+      const formattedPhone = phone.replace(/[^0-9]/g, "");
+      const url = `https://wa.me/${formattedPhone}?text=${encodeURIComponent(text)}`;
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>
