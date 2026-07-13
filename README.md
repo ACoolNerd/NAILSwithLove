@@ -11,6 +11,7 @@ This workspace serves as the launch hub for Yesenia's home-based and mobile beau
 
 ### Project Structure
 *   `launch-system-9.7/`: Core marketing slides, Spanish/English business plans, financial sheet, and geocoded contact directories.
+*   `launch-system-9.7/colombia-grants-and-funding.md`: Playful guide detailing local grants 🌸, microloans 💰, and Chamber of Commerce resources in Cali.
 *   `launch-system-9.7/website/`: Static client-facing landing page.
 *   `launch-system-9.7/website/dashboard/`: Responsive mobile-first administration dashboard (appointments, client CRM, B2B leads, marketing copies).
 *   `yesenia-android-app/`: Android project wrapping the local website offline.
@@ -41,6 +42,7 @@ Este repositorio contiene todo el sistema de lanzamiento comercial y tecnológic
 
 ### Estructura del Proyecto
 *   `launch-system-9.7/`: Presentación de aliados, planes de negocio en español e inglés, modelo financiero y directorio de contactos en Cali.
+*   `launch-system-9.7/colombia-grants-and-funding.md`: Guía divertida y lúdica sobre subsidios de capital semilla 🌸, microcréditos 💰 y alianzas con la Cámara de Comercio de Cali.
 *   `launch-system-9.7/website/`: Página de aterrizaje pública para las clientas.
 *   `launch-system-9.7/website/dashboard/`: Panel administrativo móvil-first (calendario, CRM, prospectos locales de Cali, marketing hub).
 *   `yesenia-android-app/`: Proyecto nativo de Android que empaqueta el sitio web de forma local y offline.
