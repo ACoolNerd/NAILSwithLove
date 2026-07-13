@@ -35,6 +35,7 @@
       color: var(--burgundy-dark);
       min-height: 100vh;
       overflow-x: hidden;
+      padding-bottom: 70px; /* Space for mobile nav */
     }
     
     /* Login Glassmorphism Overlay */
@@ -46,7 +47,7 @@
       height: 100vh;
       background: linear-gradient(135deg, rgba(122, 32, 54, 0.8), rgba(58, 20, 32, 0.95));
       backdrop-filter: blur(10px);
-      z-index: 1000;
+      z-index: 2000;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -99,7 +100,8 @@
     
     .input-field {
       width: 100%;
-      padding: 14px 18px;
+      min-height: 48px; /* Safe mobile height */
+      padding: 12px 18px;
       border-radius: 12px;
       border: var(--border);
       background: var(--white);
@@ -116,7 +118,8 @@
     
     .login-btn {
       width: 100%;
-      padding: 15px;
+      min-height: 48px;
+      padding: 12px;
       border: none;
       border-radius: 12px;
       background: var(--burgundy);
@@ -146,7 +149,7 @@
       min-height: 100vh;
     }
     
-    /* Sidebar */
+    /* Sidebar (Desktop only) */
     .sidebar {
       width: 260px;
       background: var(--burgundy-dark);
@@ -157,6 +160,7 @@
       position: fixed;
       height: 100vh;
       z-index: 100;
+      transition: var(--transition);
     }
     
     .sidebar-header {
@@ -186,12 +190,13 @@
     .menu-link {
       display: flex;
       align-items: center;
-      padding: 12px 16px;
+      padding: 14px 16px;
       color: rgba(255, 255, 255, 0.7);
       text-decoration: none;
       border-radius: 12px;
       font-weight: 600;
       font-size: 15px;
+      min-height: 48px;
       transition: var(--transition);
     }
     
@@ -217,6 +222,47 @@
       margin-top: auto;
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
+
+    /* Mobile Bottom Navigation (Visible on Mobile only) */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 64px;
+      background: var(--burgundy-dark);
+      z-index: 1000;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 600;
+      width: 16%;
+      height: 100%;
+      transition: var(--transition);
+    }
+
+    .mobile-nav-link svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+      margin-bottom: 2px;
+    }
+
+    .mobile-nav-link.active {
+      color: var(--gold);
+    }
     
     /* Main Content */
     .main-content {
@@ -224,6 +270,7 @@
       flex-grow: 1;
       padding: 40px;
       max-width: 1280px;
+      transition: var(--transition);
     }
     
     .header-area {
@@ -231,6 +278,8 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 30px;
+      flex-wrap: wrap;
+      gap: 15px;
     }
     
     .page-title {
@@ -247,6 +296,21 @@
       font-size: 14px;
       font-weight: 600;
       color: var(--burgundy);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lang-selector {
+      background: var(--white);
+      border: var(--border);
+      color: var(--burgundy-dark);
+      padding: 4px 8px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
     }
     
     /* Dashboard Metrics Grid */
@@ -307,7 +371,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
     
-    /* Cards and Elements */
+    /* Cards and Panels */
     .card-panel {
       background: var(--white);
       border: var(--border);
@@ -360,20 +424,41 @@
       gap: 15px;
       margin-bottom: 20px;
     }
+
+    /* Privacy Consent Box */
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #71636a;
+    }
+
+    .checkbox-container input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--burgundy);
+      cursor: pointer;
+    }
     
     .form-btn {
-      padding: 12px 24px;
+      padding: 14px 28px;
       background: var(--burgundy);
       color: var(--white);
       border: none;
       border-radius: 12px;
       font-weight: 600;
+      font-size: 16px;
       cursor: pointer;
+      min-height: 48px;
+      box-shadow: 0 4px 12px rgba(122,32,54,0.15);
       transition: var(--transition);
     }
     
     .form-btn:hover {
       background: var(--burgundy-dark);
+      transform: translateY(-1px);
     }
     
     /* Pill Badges */
@@ -395,11 +480,12 @@
       background: none;
       border: 1px solid var(--burgundy);
       color: var(--burgundy);
-      padding: 6px 12px;
+      padding: 8px 16px;
       border-radius: 8px;
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
+      min-height: 38px;
       transition: var(--transition);
     }
     
@@ -425,6 +511,8 @@
       display: flex;
       border-bottom: 2px solid var(--blush);
       margin-bottom: 25px;
+      overflow-x: auto;
+      white-space: nowrap;
     }
     
     .tab-btn {
@@ -470,7 +558,7 @@
     
     .copy-success-popup {
       position: fixed;
-      bottom: 30px;
+      bottom: 80px; /* Higher popup on mobile for navigation */
       left: 50%;
       transform: translateX(-50%) translateY(20px);
       background: var(--burgundy-dark);
@@ -489,17 +577,59 @@
       transform: translateX(-50%) translateY(0);
     }
     
-    @media(max-width: 768px) {
+    /* MOBILE FIRST RESPONSIVE REFINEMENTS */
+    @media(max-width: 600px) {
+      body {
+        padding-bottom: 80px; /* More space on small screens */
+      }
+
       .sidebar {
-        width: 70px;
-        padding: 20px 10px;
+        display: none; /* Hide sidebar completely */
       }
-      .sidebar-logo span, .menu-link span {
-        display: none;
+
+      .mobile-nav {
+        display: flex; /* Show bottom app bar */
       }
+
       .main-content {
-        margin-left: 70px;
-        padding: 20px;
+        margin-left: 0; /* Align full width */
+        padding: 20px 16px;
+      }
+
+      .header-area {
+        margin-bottom: 20px;
+      }
+
+      .page-title {
+        font-size: 26px;
+      }
+
+      .card-panel {
+        padding: 20px 15px;
+        border-radius: 16px;
+      }
+
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .metric-card {
+        padding: 16px 12px;
+        border-radius: 14px;
+      }
+
+      .metric-value {
+        font-size: 20px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr; /* Full width fields on phone */
+      }
+
+      .form-btn {
+        width: 100%; /* Giant touch target button */
       }
     }
   </style>
@@ -510,20 +640,48 @@
   <div id="login-overlay">
     <div class="login-card">
       <div class="login-logo">Nails with Love</div>
-      <div class="login-subtitle">Yesenia's Boutique</div>
+      <div class="login-subtitle" data-i18n="login_sub">Boutique de Yesenia</div>
       <div class="input-group">
-        <label class="input-label">Código de Acceso</label>
+        <label class="input-label" data-i18n="login_code">Código de Acceso</label>
         <input type="password" id="passcode-field" class="input-field" placeholder="••••" maxlength="4">
       </div>
-      <button class="login-btn" onclick="validateLogin()">Entrar al Sistema</button>
-      <div class="error-msg" id="login-error">Código incorrecto. Intenta de nuevo.</div>
+      <button class="login-btn" onclick="validateLogin()" data-i18n="login_btn">Entrar al Sistema</button>
+      <div class="error-msg" id="login-error" data-i18n="login_err">Código incorrecto. Intenta de nuevo.</div>
     </div>
   </div>
+
+  <!-- Mobile Bottom Tab Bar -->
+  <nav class="mobile-nav">
+    <a href="#" class="mobile-nav-link active" id="m-nav-inicio" onclick="switchView('inicio', this, true)">
+      <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span data-i18n="nav_home">Inicio</span>
+    </a>
+    <a href="#" class="mobile-nav-link" id="m-nav-citas" onclick="switchView('citas', this, true)">
+      <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+      <span data-i18n="nav_appts">Citas</span>
+    </a>
+    <a href="#" class="mobile-nav-link" id="m-nav-clientes" onclick="switchView('clientes', this, true)">
+      <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V20h14v-3.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V20h6v-3.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+      <span data-i18n="nav_crm">Clientes</span>
+    </a>
+    <a href="#" class="mobile-nav-link" id="m-nav-prospectos" onclick="switchView('prospectos', this, true)">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      <span data-i18n="nav_leads">Leads</span>
+    </a>
+    <a href="#" class="mobile-nav-link" id="m-nav-marketing" onclick="switchView('marketing', this, true)">
+      <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+      <span data-i18n="nav_marketing">Promo</span>
+    </a>
+    <a href="#" class="mobile-nav-link" id="m-nav-reclutamiento" onclick="switchView('reclutamiento', this, true)">
+      <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      <span data-i18n="nav_recruits">Academia</span>
+    </a>
+  </nav>
 
   <!-- Main App Layout -->
   <div class="app-container">
     
-    <!-- Sidebar Menu -->
+    <!-- Sidebar Menu (Desktop only) -->
     <aside class="sidebar">
       <div class="sidebar-header">
         <h2 class="sidebar-logo">Nails<span>Love</span></h2>
@@ -531,45 +689,45 @@
       
       <ul class="sidebar-menu">
         <li class="menu-item">
-          <a href="#" class="menu-link active" onclick="switchView('inicio', this)">
+          <a href="#" class="menu-link active" id="d-nav-inicio" onclick="switchView('inicio', this)">
             <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-            <span>Inicio</span>
+            <span data-i18n="nav_home">Inicio</span>
           </a>
         </li>
         <li class="menu-item">
-          <a href="#" class="menu-link" onclick="switchView('citas', this)">
+          <a href="#" class="menu-link" id="d-nav-citas" onclick="switchView('citas', this)">
             <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
-            <span>Citas</span>
+            <span data-i18n="nav_appts">Citas</span>
           </a>
         </li>
         <li class="menu-item">
-          <a href="#" class="menu-link" onclick="switchView('clientes', this)">
+          <a href="#" class="menu-link" id="d-nav-clientes" onclick="switchView('clientes', this)">
             <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V20h14v-3.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V20h6v-3.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-            <span>Clientes</span>
+            <span data-i18n="nav_crm">Clientes</span>
           </a>
         </li>
         <li class="menu-item">
-          <a href="#" class="menu-link" onclick="switchView('prospectos', this)">
+          <a href="#" class="menu-link" id="d-nav-prospectos" onclick="switchView('prospectos', this)">
             <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-            <span>Prospectos Cali</span>
+            <span data-i18n="nav_leads">Prospectos Cali</span>
           </a>
         </li>
         <li class="menu-item">
-          <a href="#" class="menu-link" onclick="switchView('marketing', this)">
+          <a href="#" class="menu-link" id="d-nav-marketing" onclick="switchView('marketing', this)">
             <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
-            <span>Marketing Hub</span>
+            <span data-i18n="nav_marketing">Marketing Hub</span>
           </a>
         </li>
         <li class="menu-item">
-          <a href="#" class="menu-link" onclick="switchView('reclutamiento', this)">
+          <a href="#" class="menu-link" id="d-nav-reclutamiento" onclick="switchView('reclutamiento', this)">
             <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-            <span>Reclutamiento</span>
+            <span data-i18n="nav_recruits">Reclutamiento</span>
           </a>
         </li>
         <li class="menu-item" style="margin-top: auto;">
           <a href="#" class="menu-link logout-btn" onclick="logout()">
             <svg viewBox="0 0 24 24"><path d="M13 3h-2v10h2V3zm4.78 1.58l-1.42 1.42C18.2 7.05 19 8.95 19 11c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.05.8-3.95 2.64-5.01l-1.42-1.42C3.8 5.95 3 8.37 3 11c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.63-.8-5.05-2.22-6.42z"/></svg>
-            <span>Cerrar Sesión</span>
+            <span data-i18n="nav_logout">Cerrar Sesión</span>
           </a>
         </li>
       </ul>
@@ -580,47 +738,53 @@
       
       <!-- Top Title and User Info -->
       <div class="header-area">
-        <h1 class="page-title" id="view-title">Panel de Control</h1>
-        <div class="user-pill">Admin: Yesenia</div>
+        <h1 class="page-title" id="view-title" data-i18n="title_dashboard">Panel de Control</h1>
+        <div class="user-pill">
+          <span>Admin: Yesenia</span>
+          <select id="lang-select" class="lang-selector" onchange="changeLanguage(this.value)">
+            <option value="es">ES</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
       </div>
       
       <!-- VIEW: INICIO -->
       <section id="view-inicio" class="view-section active">
         <div class="metrics-grid">
           <div class="metric-card">
-            <div class="metric-title">Ingresos Mensuales</div>
+            <div class="metric-title" data-i18n="metric_sales">Ingresos Mensuales</div>
             <div class="metric-value">COP $1.850.000</div>
-            <div class="metric-trend">↑ 14% vs mes anterior</div>
+            <div class="metric-trend" data-i18n="metric_sales_trend">↑ 14% vs mes anterior</div>
           </div>
           <div class="metric-card">
-            <div class="metric-title">Clientes Activos</div>
+            <div class="metric-title" data-i18n="metric_clients">Clientes Activos</div>
             <div class="metric-value">28</div>
-            <div class="metric-trend">4 nuevas esta semana</div>
+            <div class="metric-trend" data-i18n="metric_clients_trend">4 nuevas esta semana</div>
           </div>
           <div class="metric-card">
-            <div class="metric-title">Salones Aliados</div>
+            <div class="metric-title" data-i18n="metric_partners">Salones Aliados</div>
             <div class="metric-value">12</div>
-            <div class="metric-trend">2 completados hoy</div>
+            <div class="metric-trend" data-i18n="metric_partners_trend">2 completados hoy</div>
           </div>
           <div class="metric-card">
-            <div class="metric-title">Candidatas Academias</div>
+            <div class="metric-title" data-i18n="metric_recruits">Candidatas Academias</div>
             <div class="metric-value">4</div>
-            <div class="metric-trend">SENA y Carrusel</div>
+            <div class="metric-trend" data-i18n="metric_recruits_trend">SENA y Carrusel</div>
           </div>
         </div>
         
         <div class="card-panel">
-          <h3 class="panel-title">Citas de Hoy</h3>
+          <h3 class="panel-title" data-i18n="panel_today_appts">Citas de Hoy</h3>
           <div class="data-table-container">
             <table class="data-table" id="today-appointments-table">
               <thead>
                 <tr>
-                  <th>Cliente</th>
-                  <th>Servicio</th>
-                  <th>Hora</th>
-                  <th>Barrio</th>
-                  <th>Valor</th>
-                  <th>Estado</th>
+                  <th data-i18n="th_client">Cliente</th>
+                  <th data-i18n="th_service">Servicio</th>
+                  <th data-i18n="th_time">Hora</th>
+                  <th data-i18n="th_neighborhood">Barrio</th>
+                  <th data-i18n="th_value">Valor</th>
+                  <th data-i18n="th_status">Estado</th>
                 </tr>
               </thead>
               <tbody>
@@ -634,14 +798,14 @@
       <!-- VIEW: CITAS -->
       <section id="view-citas" class="view-section">
         <div class="card-panel">
-          <h3 class="panel-title">Agendar Nueva Cita</h3>
+          <h3 class="panel-title" data-i18n="panel_new_appt">Agendar Nueva Cita</h3>
           <div class="form-grid">
             <div class="input-group">
-              <label class="input-label">Cliente</label>
+              <label class="input-label" data-i18n="lbl_client">Cliente</label>
               <input type="text" id="appointment-client" class="input-field" placeholder="Nombre completo">
             </div>
             <div class="input-group">
-              <label class="input-label">Servicio</label>
+              <label class="input-label" data-i18n="lbl_service">Servicio</label>
               <select id="appointment-service" class="input-field">
                 <option value="Manicure Semipermanente">Manicure Semipermanente</option>
                 <option value="Gel X Extensiones">Gel X Extensiones</option>
@@ -650,38 +814,38 @@
               </select>
             </div>
             <div class="input-group">
-              <label class="input-label">Fecha</label>
+              <label class="input-label" data-i18n="lbl_date">Fecha</label>
               <input type="date" id="appointment-date" class="input-field">
             </div>
             <div class="input-group">
-              <label class="input-label">Hora</label>
+              <label class="input-label" data-i18n="lbl_time">Hora</label>
               <input type="time" id="appointment-time" class="input-field">
             </div>
             <div class="input-group">
-              <label class="input-label">Barrio</label>
+              <label class="input-label" data-i18n="lbl_neighborhood">Barrio</label>
               <input type="text" id="appointment-barrio" class="input-field" placeholder="Ej: Ciudad Jardín">
             </div>
             <div class="input-group">
-              <label class="input-label">Valor (COP)</label>
+              <label class="input-label" data-i18n="lbl_value">Valor (COP)</label>
               <input type="number" id="appointment-value" class="input-field" placeholder="55000">
             </div>
           </div>
-          <button class="form-btn" onclick="addAppointment()">Agendar Cita</button>
+          <button class="form-btn" onclick="addAppointment()" data-i18n="btn_book">Agendar Cita</button>
         </div>
         
         <div class="card-panel">
-          <h3 class="panel-title">Listado General de Citas</h3>
+          <h3 class="panel-title" data-i18n="panel_all_appts">Listado General de Citas</h3>
           <div class="data-table-container">
             <table class="data-table" id="all-appointments-table">
               <thead>
                 <tr>
-                  <th>Cliente</th>
-                  <th>Servicio</th>
-                  <th>Fecha/Hora</th>
-                  <th>Barrio</th>
-                  <th>Valor</th>
-                  <th>Estado</th>
-                  <th>Acción</th>
+                  <th data-i18n="th_client">Cliente</th>
+                  <th data-i18n="th_service">Servicio</th>
+                  <th data-i18n="th_date_time">Fecha/Hora</th>
+                  <th data-i18n="th_neighborhood">Barrio</th>
+                  <th data-i18n="th_value">Valor</th>
+                  <th data-i18n="th_status">Estado</th>
+                  <th data-i18n="th_actions">Acción</th>
                 </tr>
               </thead>
               <tbody>
@@ -695,39 +859,45 @@
       <!-- VIEW: CLIENTES -->
       <section id="view-clientes" class="view-section">
         <div class="card-panel">
-          <h3 class="panel-title">Nuevo Perfil de Cliente</h3>
+          <h3 class="panel-title" data-i18n="panel_new_client">Nuevo Perfil de Cliente</h3>
           <div class="form-grid">
             <div class="input-group">
-              <label class="input-label">Nombre</label>
+              <label class="input-label" data-i18n="lbl_name">Nombre</label>
               <input type="text" id="client-name" class="input-field" placeholder="Nombre completo">
             </div>
             <div class="input-group">
-              <label class="input-label">Teléfono</label>
+              <label class="input-label" data-i18n="lbl_phone">Teléfono</label>
               <input type="text" id="client-phone" class="input-field" placeholder="+57 3...">
             </div>
             <div class="input-group">
-              <label class="input-label">Barrio</label>
+              <label class="input-label" data-i18n="lbl_neighborhood">Barrio</label>
               <input type="text" id="client-barrio" class="input-field" placeholder="Ej: El Peñón">
             </div>
             <div class="input-group">
-              <label class="input-label">Diseño Favorito / Notas</label>
+              <label class="input-label" data-i18n="lbl_notes">Diseño Favorito / Notas</label>
               <input type="text" id="client-notes" class="input-field" placeholder="Esmalte semipermanente french...">
             </div>
           </div>
-          <button class="form-btn" onclick="addClient()">Registrar Cliente</button>
+          <!-- Habeas Data Privacy Consent -->
+          <div class="checkbox-container">
+            <input type="checkbox" id="client-habeas" checked>
+            <label for="client-habeas" data-i18n="lbl_habeas">Acepta Ley 1581 Habeas Data (Datos Personales)</label>
+          </div>
+          <button class="form-btn" onclick="addClient()" data-i18n="btn_register_client" style="margin-top: 15px;">Registrar Cliente</button>
         </div>
         
         <div class="card-panel">
-          <h3 class="panel-title">Directorio CRM de Clientes</h3>
+          <h3 class="panel-title" data-i18n="panel_crm">Directorio CRM de Clientes</h3>
           <div class="data-table-container">
             <table class="data-table" id="crm-table">
               <thead>
                 <tr>
-                  <th>Cliente</th>
-                  <th>Teléfono</th>
-                  <th>Barrio</th>
-                  <th>Preferencias / Notas</th>
-                  <th>Acción</th>
+                  <th data-i18n="th_client">Cliente</th>
+                  <th data-i18n="th_phone">Teléfono</th>
+                  <th data-i18n="th_neighborhood">Barrio</th>
+                  <th data-i18n="th_notes">Preferencias / Notas</th>
+                  <th data-i18n="th_habeas">Habeas Data</th>
+                  <th data-i18n="th_actions">Acción</th>
                 </tr>
               </thead>
               <tbody>
@@ -741,20 +911,20 @@
       <!-- VIEW: PROSPECTOS CALI -->
       <section id="view-prospectos" class="view-section">
         <div class="card-panel">
-          <h3 class="panel-title">Directorio de Salones y Spas Aliados en Cali</h3>
-          <p style="margin-bottom: 20px; font-size:14.5px; color:#71636a;">
+          <h3 class="panel-title" data-i18n="panel_salons_cali">Directorio de Salones y Spas Aliados en Cali</h3>
+          <p style="margin-bottom: 20px; font-size:14.5px; color:#71636a;" data-i18n="desc_salons_cali">
             Datos obtenidos localmente mediante geolocalización. Úsalos para coordinar alianzas comerciales y comisiones del 10% por referido.
           </p>
           <div class="data-table-container">
             <table class="data-table" id="leads-table">
               <thead>
                 <tr>
-                  <th>Establecimiento</th>
-                  <th>Categoría</th>
-                  <th>Ubicación / Barrio</th>
-                  <th>Dirección</th>
-                  <th>Estado</th>
-                  <th>Contacto B2B</th>
+                  <th data-i18n="th_salon">Establecimiento</th>
+                  <th data-i18n="th_category">Categoría</th>
+                  <th data-i18n="th_zone">Ubicación / Barrio</th>
+                  <th data-i18n="th_address">Dirección</th>
+                  <th data-i18n="th_status">Estado</th>
+                  <th data-i18n="th_outreach">Contacto B2B</th>
                 </tr>
               </thead>
               <tbody>
@@ -768,9 +938,9 @@
       <!-- VIEW: MARKETING HUB -->
       <section id="view-marketing" class="view-section">
         <div class="tab-bar">
-          <button class="tab-btn active" onclick="switchMarketingTab('ads', this)">Anuncios Redes Sociales</button>
-          <button class="tab-btn" onclick="switchMarketingTab('whatsapp_flows', this)">Guiones WhatsApp Business</button>
-          <button class="tab-btn" onclick="switchMarketingTab('outreach', this)">Pitches B2B Alianzas</button>
+          <button class="tab-btn active" id="tab-marketing-ads" onclick="switchMarketingTab('ads', this)" data-i18n="tab_ads">Anuncios Redes Sociales</button>
+          <button class="tab-btn" id="tab-marketing-flows" onclick="switchMarketingTab('whatsapp_flows', this)" data-i18n="tab_whatsapp">Guiones WhatsApp Business</button>
+          <button class="tab-btn" id="tab-marketing-outreach" onclick="switchMarketingTab('outreach_templates', this)" data-i18n="tab_b2b">Pitches B2B Alianzas</button>
         </div>
         
         <div class="card-panel" id="marketing-container">
@@ -781,14 +951,14 @@
       <!-- VIEW: RECLUTAMIENTO -->
       <section id="view-reclutamiento" class="view-section">
         <div class="card-panel">
-          <h3 class="panel-title">Nueva Candidata (Egresada Academia)</h3>
+          <h3 class="panel-title" data-i18n="panel_new_grad">Nueva Candidata (Egresada Academia)</h3>
           <div class="form-grid">
             <div class="input-group">
-              <label class="input-label">Nombre Completo</label>
+              <label class="input-label" data-i18n="lbl_name">Nombre Completo</label>
               <input type="text" id="recruit-name" class="input-field" placeholder="Nombre completo">
             </div>
             <div class="input-group">
-              <label class="input-label">Academia</label>
+              <label class="input-label" data-i18n="lbl_academy">Academia</label>
               <select id="recruit-academy" class="input-field">
                 <option value="SENA Cali">SENA Cali</option>
                 <option value="Academia Carrusel">Academia Carrusel</option>
@@ -797,24 +967,24 @@
               </select>
             </div>
             <div class="input-group">
-              <label class="input-label">Teléfono</label>
+              <label class="input-label" data-i18n="lbl_phone">Teléfono</label>
               <input type="text" id="recruit-phone" class="input-field" placeholder="+57 3...">
             </div>
           </div>
-          <button class="form-btn" onclick="addRecruit()">Registrar Candidata</button>
+          <button class="form-btn" onclick="addRecruit()" data-i18n="btn_register_recruit">Registrar Candidata</button>
         </div>
         
         <div class="card-panel">
-          <h3 class="panel-title">Pipeline de Contratación</h3>
+          <h3 class="panel-title" data-i18n="panel_pipeline">Pipeline de Contratación</h3>
           <div class="data-table-container">
             <table class="data-table" id="recruits-table">
               <thead>
                 <tr>
-                  <th>Candidata</th>
-                  <th>Academia</th>
-                  <th>Contacto</th>
-                  <th>Estado</th>
-                  <th>Acción</th>
+                  <th data-i18n="th_candidate">Candidata</th>
+                  <th data-i18n="th_academy">Academia</th>
+                  <th data-i18n="th_phone">Contacto</th>
+                  <th data-i18n="th_status">Estado</th>
+                  <th data-i18n="th_actions">Acción</th>
                 </tr>
               </thead>
               <tbody>
@@ -829,25 +999,207 @@
   </div>
 
   <!-- Clipboard Popup Notification -->
-  <div id="copy-popup" class="copy-success-popup">Copiado al portapapeles</div>
+  <div id="copy-popup" class="copy-success-popup" data-i18n="popup_copy">Copiado al portapapeles</div>
 
   <script>
+    // i18n Dictionaries
+    const translations = {
+      es: {
+        login_sub: "Boutique de Yesenia",
+        login_code: "Código de Acceso",
+        login_btn: "Entrar al Sistema",
+        login_err: "Código incorrecto. Intenta de nuevo.",
+        nav_home: "Inicio",
+        nav_appts: "Citas",
+        nav_crm: "Clientes",
+        nav_leads: "Leads",
+        nav_marketing: "Promo",
+        nav_recruits: "Academia",
+        nav_logout: "Cerrar Sesión",
+        title_dashboard: "Panel de Control",
+        metric_sales: "Ingresos Mensuales",
+        metric_sales_trend: "↑ 14% vs mes anterior",
+        metric_clients: "Clientes Activos",
+        metric_clients_trend: "4 nuevas esta semana",
+        metric_partners: "Salones Aliados",
+        metric_partners_trend: "2 completados hoy",
+        metric_recruits: "Candidatas Academias",
+        metric_recruits_trend: "SENA y Carrusel",
+        panel_today_appts: "Citas de Hoy",
+        panel_new_appt: "Agendar Nueva Cita",
+        panel_all_appts: "Listado General de Citas",
+        panel_new_client: "Nuevo Perfil de Cliente",
+        panel_crm: "Directorio CRM de Clientes",
+        panel_salons_cali: "Directorio de Salones y Spas Aliados en Cali",
+        desc_salons_cali: "Datos obtenidos localmente mediante geolocalización. Úsalos para coordinar alianzas comerciales y comisiones del 10% por referido.",
+        panel_new_grad: "Nueva Candidata (Egresada Academia)",
+        panel_pipeline: "Pipeline de Contratación",
+        th_client: "Cliente",
+        th_service: "Servicio",
+        th_time: "Hora",
+        th_neighborhood: "Barrio",
+        th_value: "Valor",
+        th_status: "Estado",
+        th_date_time: "Fecha/Hora",
+        th_phone: "Teléfono",
+        th_notes: "Preferencias / Notas",
+        th_habeas: "Habeas Data",
+        th_actions: "Acción",
+        th_salon: "Establecimiento",
+        th_category: "Categoría",
+        th_zone: "Ubicación / Barrio",
+        th_address: "Dirección",
+        th_outreach: "Contacto B2B",
+        th_candidate: "Candidata",
+        th_academy: "Academia",
+        lbl_client: "Cliente",
+        lbl_service: "Servicio",
+        lbl_date: "Fecha",
+        lbl_time: "Hora",
+        lbl_neighborhood: "Barrio",
+        lbl_value: "Valor (COP)",
+        lbl_name: "Nombre",
+        lbl_phone: "Teléfono",
+        lbl_notes: "Diseño Favorito / Notas",
+        lbl_habeas: "Autorización Ley 1581 Habeas Data (Datos Personales)",
+        lbl_academy: "Academia",
+        btn_book: "Agendar Cita",
+        btn_register_client: "Registrar Cliente",
+        btn_register_recruit: "Registrar Candidata",
+        tab_ads: "Anuncios Redes Sociales",
+        tab_whatsapp: "Guiones WhatsApp Business",
+        tab_b2b: "Pitches B2B Alianzas",
+        popup_copy: "Copiado al portapapeles",
+        status_confirmed: "Confirmada",
+        status_completed: "Completada",
+        status_paid: "Pagada",
+        status_pending: "Pendiente",
+        status_contacted: "Contactado",
+        status_partner: "Socio",
+        status_interviewed: "Entrevistada",
+        status_hired: "Contratada"
+      },
+      en: {
+        login_sub: "Yesenia's Boutique",
+        login_code: "Access Code",
+        login_btn: "Enter System",
+        login_err: "Incorrect passcode. Try again.",
+        nav_home: "Home",
+        nav_appts: "Appts",
+        nav_crm: "Clients",
+        nav_leads: "Leads",
+        nav_marketing: "Promo",
+        nav_recruits: "Academy",
+        nav_logout: "Logout",
+        title_dashboard: "Dashboard",
+        metric_sales: "Monthly Revenue",
+        metric_sales_trend: "↑ 14% vs last month",
+        metric_clients: "Active Clients",
+        metric_clients_trend: "4 new this week",
+        metric_partners: "Partner Salons",
+        metric_partners_trend: "2 completed today",
+        metric_recruits: "Academy Candidates",
+        metric_recruits_trend: "SENA & Carrusel",
+        panel_today_appts: "Today's Appointments",
+        panel_new_appt: "Book New Appointment",
+        panel_all_appts: "General Appointments List",
+        panel_new_client: "New Client Profile",
+        panel_crm: "Client CRM Directory",
+        panel_salons_cali: "Partner Spas & Salons in Cali",
+        desc_salons_cali: "Data retrieved locally via geocoding. Use these to coordinate business alliances and 10% referral commissions.",
+        panel_new_grad: "New Candidate (Academy Graduate)",
+        panel_pipeline: "Hiring Pipeline",
+        th_client: "Client",
+        th_service: "Service",
+        th_time: "Time",
+        th_neighborhood: "Barrio",
+        th_value: "Value",
+        th_status: "Status",
+        th_date_time: "Date/Time",
+        th_phone: "Phone",
+        th_notes: "Preferences / Notes",
+        th_habeas: "Data Privacy",
+        th_actions: "Action",
+        th_salon: "Salon Name",
+        th_category: "Category",
+        th_zone: "Zone / Barrio",
+        th_address: "Address",
+        th_outreach: "B2B Outreach",
+        th_candidate: "Candidate",
+        th_academy: "Academy",
+        lbl_client: "Client",
+        lbl_service: "Service",
+        lbl_date: "Date",
+        lbl_time: "Time",
+        lbl_neighborhood: "Barrio",
+        lbl_value: "Value (COP)",
+        lbl_name: "Name",
+        lbl_phone: "Phone",
+        lbl_notes: "Favorite Design / Notes",
+        lbl_habeas: "Accept Law 1581 Habeas Data (Personal Data Privacy)",
+        lbl_academy: "Academy",
+        btn_book: "Book Appointment",
+        btn_register_client: "Register Client",
+        btn_register_recruit: "Register Candidate",
+        tab_ads: "Social Media Ads",
+        tab_whatsapp: "WhatsApp Business Scripts",
+        tab_b2b: "B2B Partnership Pitches",
+        popup_copy: "Copied to clipboard",
+        status_confirmed: "Confirmed",
+        status_completed: "Completed",
+        status_paid: "Paid",
+        status_pending: "Pending",
+        status_contacted: "Contacted",
+        status_partner: "Partner",
+        status_interviewed: "Interviewed",
+        status_hired: "Hired"
+      }
+    };
+
+    let currentLang = localStorage.getItem("nw_language") || "es";
+    
+    function changeLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem("nw_language", lang);
+      document.getElementById("lang-select").value = lang;
+      translateUI();
+      renderAppointments();
+      renderClients();
+      renderRecruits();
+      renderLeads();
+      renderMarketingTab(currentMarketingTab || 'ads');
+    }
+
+    function translateUI() {
+      const dict = translations[currentLang];
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key]) {
+          if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+            el.placeholder = dict[key];
+          } else {
+            el.innerText = dict[key];
+          }
+        }
+      });
+    }
+
     // Mock Database for CRM, Calendar, and Recruits (stored in localStorage)
     const defaultAppointments = [
-      { id: 1, client: "Camila Restrepo", service: "Manicure Semipermanente", date: "2026-07-13", time: "09:00", barrio: "Ciudad Jardín", value: 55000, status: "Confirmada" },
-      { id: 2, client: "Isabella Gómez", service: "Gel X Extensiones", date: "2026-07-13", time: "14:30", barrio: "El Peñón", value: 120000, status: "Completada" },
-      { id: 3, client: "Valeria Ortiz", service: "Combo Manicure + Pedicure", date: "2026-07-14", time: "10:00", barrio: "Granada", value: 95000, status: "Confirmada" }
+      { id: 1, client: "Camila Restrepo", service: "Manicure Semipermanente", date: "2026-07-13", time: "09:00", barrio: "Ciudad Jardín", value: 55000, status: "status_confirmed" },
+      { id: 2, client: "Isabella Gómez", service: "Gel X Extensiones", date: "2026-07-13", time: "14:30", barrio: "El Peñón", value: 120000, status: "status_completed" },
+      { id: 3, client: "Valeria Ortiz", service: "Combo Manicure + Pedicure", date: "2026-07-14", time: "10:00", barrio: "Granada", value: 95000, status: "status_confirmed" }
     ];
     
     const defaultClients = [
-      { id: 1, name: "Camila Restrepo", phone: "+57 315 765 4321", barrio: "Ciudad Jardín", notes: "Prefiere base fortalecedora y tonos blush" },
-      { id: 2, name: "Isabella Gómez", phone: "+57 320 987 6543", barrio: "El Peñón", notes: "Usa extensiones Gel-X almond medianas" },
-      { id: 3, name: "Valeria Ortiz", phone: "+57 312 456 7890", barrio: "Granada", notes: "Manicure semipermanente con diseño minimalista de flores" }
+      { id: 1, name: "Camila Restrepo", phone: "+57 315 765 4321", barrio: "Ciudad Jardín", notes: "Prefiere base fortalecedora y tonos blush", habeas: true },
+      { id: 2, name: "Isabella Gómez", phone: "+57 320 987 6543", barrio: "El Peñón", notes: "Usa extensiones Gel-X almond medianas", habeas: true },
+      { id: 3, name: "Valeria Ortiz", phone: "+57 312 456 7890", barrio: "Granada", notes: "Manicure semipermanente con diseño minimalista de flores", habeas: true }
     ];
     
     const defaultRecruits = [
-      { id: 1, name: "Natalia Bermúdez", academy: "SENA Cali", phone: "+57 311 556 7788", status: "Entrevistada" },
-      { id: 2, name: "Gabriela Rojas", academy: "Academia Carrusel", phone: "+57 318 445 2233", status: "Pendiente" }
+      { id: 1, name: "Natalia Bermúdez", academy: "SENA Cali", phone: "+57 311 556 7788", status: "status_interviewed" },
+      { id: 2, name: "Gabriela Rojas", academy: "Academia Carrusel", phone: "+57 318 445 2233", status: "status_pending" }
     ];
 
     // Local Storage Initializers
@@ -874,6 +1226,8 @@
     
     // Check Auth State on Load
     window.addEventListener("load", () => {
+      document.getElementById("lang-select").value = currentLang;
+      translateUI();
       if (localStorage.getItem("nw_authenticated") === "true") {
         document.getElementById("login-overlay").style.display = "none";
         loadData();
@@ -887,27 +1241,35 @@
     }
 
     // Tab switcher
-    function switchView(viewId, el) {
+    function switchView(viewId, el, isMobile = false) {
       document.querySelectorAll(".view-section").forEach(s => s.classList.remove("active"));
       document.querySelectorAll(".menu-link").forEach(l => l.classList.remove("active"));
+      document.querySelectorAll(".mobile-nav-link").forEach(l => l.classList.remove("active"));
       
       document.getElementById(`view-${viewId}`).classList.add("active");
-      el.classList.add("active");
+      
+      // Highlight the correct tab on both desktop & mobile navigation bars
+      const desktopTab = document.getElementById(`d-nav-${viewId}`);
+      const mobileTab = document.getElementById(`m-nav-${viewId}`);
+      if (desktopTab) desktopTab.classList.add("active");
+      if (mobileTab) mobileTab.classList.add("active");
       
       // Update Title
+      const dict = translations[currentLang];
       const titles = {
-        inicio: "Panel de Control",
-        citas: "Gestión de Citas",
-        clientes: "Directorio CRM",
-        prospectos: "Prospectos de Negocios en Cali",
-        marketing: "Marketing Content Hub",
-        reclutamiento: "Reclutamiento de Graduadas"
+        inicio: dict.title_dashboard,
+        citas: dict.nav_appts,
+        clientes: dict.panel_crm,
+        prospectos: dict.nav_leads,
+        marketing: "Marketing Hub",
+        reclutamiento: dict.nav_recruits
       };
       document.getElementById("view-title").innerText = titles[viewId] || "Dashboard";
     }
 
     // Dynamic Lists Loader
     function loadData() {
+      translateUI();
       renderAppointments();
       renderClients();
       renderRecruits();
@@ -919,6 +1281,7 @@
     function renderAppointments() {
       const appts = JSON.parse(localStorage.getItem("nw_appointments"));
       const today = "2026-07-13"; // Hardcoded mockup date matching current state
+      const dict = translations[currentLang];
       
       const todayBody = document.querySelector("#today-appointments-table tbody");
       const allBody = document.querySelector("#all-appointments-table tbody");
@@ -927,7 +1290,8 @@
       allBody.innerHTML = "";
       
       appts.forEach(a => {
-        const badgeClass = a.status === "Completada" ? "badge-success" : (a.status === "Confirmada" ? "badge-warning" : "badge-info");
+        const statusLabel = dict[a.status] || a.status;
+        const badgeClass = a.status === "status_completed" ? "badge-success" : (a.status === "status_confirmed" ? "badge-warning" : "badge-info");
         const row = `
           <tr>
             <td><b>${a.client}</b></td>
@@ -935,9 +1299,9 @@
             <td>${a.date} / ${a.time}</td>
             <td>${a.barrio}</td>
             <td>COP $${a.value.toLocaleString()}</td>
-            <td><span class="badge ${badgeClass}">${a.status}</span></td>
+            <td><span class="badge ${badgeClass}">${statusLabel}</span></td>
             <td>
-              <button class="btn-action" onclick="toggleAppointmentStatus(${a.id})">Avanzar Estado</button>
+              <button class="btn-action" onclick="toggleAppointmentStatus(${a.id})">${currentLang === 'es' ? 'Avanzar' : 'Advance'}</button>
             </td>
           </tr>
         `;
@@ -951,7 +1315,7 @@
               <td>${a.time}</td>
               <td>${a.barrio}</td>
               <td>COP $${a.value.toLocaleString()}</td>
-              <td><span class="badge ${badgeClass}">${a.status}</span></td>
+              <td><span class="badge ${badgeClass}">${statusLabel}</span></td>
             </tr>
           `;
         }
@@ -967,30 +1331,29 @@
       const value = parseInt(document.getElementById("appointment-value").value) || 55000;
       
       if (!client || !date || !time || !barrio) {
-        alert("Completa todos los campos obligatorios.");
+        alert(currentLang === 'es' ? "Completa todos los campos obligatorios." : "Please complete all required fields.");
         return;
       }
       
       const appts = JSON.parse(localStorage.getItem("nw_appointments"));
-      appts.push({ id: Date.now(), client, service, date, time, barrio, value, status: "Confirmada" });
+      appts.push({ id: Date.now(), client, service, date, time, barrio, value, status: "status_confirmed" });
       localStorage.setItem("nw_appointments", JSON.stringify(appts));
       
-      // Reset Fields
       document.getElementById("appointment-client").value = "";
       document.getElementById("appointment-barrio").value = "";
       document.getElementById("appointment-value").value = "";
       
       renderAppointments();
-      alert("Cita agendada correctamente.");
+      alert(currentLang === 'es' ? "Cita agendada correctamente." : "Appointment successfully logged.");
     }
     
     function toggleAppointmentStatus(id) {
       const appts = JSON.parse(localStorage.getItem("nw_appointments"));
       const app = appts.find(a => a.id === id);
       if (app) {
-        if (app.status === "Confirmada") app.status = "Completada";
-        else if (app.status === "Completada") app.status = "Pagada";
-        else app.status = "Confirmada";
+        if (app.status === "status_confirmed") app.status = "status_completed";
+        else if (app.status === "status_completed") app.status = "status_paid";
+        else app.status = "status_confirmed";
         
         localStorage.setItem("nw_appointments", JSON.stringify(appts));
         renderAppointments();
@@ -1004,14 +1367,16 @@
       body.innerHTML = "";
       
       cls.forEach(c => {
+        const habeasLabel = c.habeas ? (currentLang === 'es' ? 'Autorizado ✅' : 'Authorized ✅') : (currentLang === 'es' ? 'Pendiente ❌' : 'Pending ❌');
         body.innerHTML += `
           <tr>
             <td><b>${c.name}</b></td>
             <td>${c.phone}</td>
             <td>${c.barrio}</td>
             <td>${c.notes}</td>
+            <td><span style="font-weight:600; color:${c.habeas ? '#2E7D32':'#D32F2F'};">${habeasLabel}</span></td>
             <td>
-              <button class="btn-action btn-action-primary" onclick="openWhatsApp('${c.phone}', 'Hola ${c.name}, te saluda Yesenia de Nails with Love. 💅 Espero que estés super bien. Te escribo para consultar...')">Escribir</button>
+              <button class="btn-action btn-action-primary" onclick="openWhatsApp('${c.phone}', 'Hola ${c.name}, te saluda Yesenia de Nails with Love. 💅 Espero que estés super bien...')">${currentLang==='es'?'Escribir':'Chat'}</button>
             </td>
           </tr>
         `;
@@ -1023,23 +1388,25 @@
       const phone = document.getElementById("client-phone").value;
       const barrio = document.getElementById("client-barrio").value;
       const notes = document.getElementById("client-notes").value;
+      const habeas = document.getElementById("client-habeas").checked;
       
       if (!name || !phone || !barrio) {
-        alert("Completa los campos principales.");
+        alert(currentLang === 'es' ? "Completa los campos principales." : "Please fill out major fields.");
         return;
       }
       
       const cls = JSON.parse(localStorage.getItem("nw_clients"));
-      cls.push({ id: Date.now(), name, phone, barrio, notes });
+      cls.push({ id: Date.now(), name, phone, barrio, notes, habeas });
       localStorage.setItem("nw_clients", JSON.stringify(cls));
       
       document.getElementById("client-name").value = "";
       document.getElementById("client-phone").value = "";
       document.getElementById("client-barrio").value = "";
       document.getElementById("client-notes").value = "";
+      document.getElementById("client-habeas").checked = true;
       
       renderClients();
-      alert("Cliente registrado.");
+      alert(currentLang === 'es' ? "Cliente registrado con consentimiento Habeas Data." : "Client registered with data consent.");
     }
 
     // 3. Recruits
@@ -1047,18 +1414,20 @@
       const recruits = JSON.parse(localStorage.getItem("nw_recruits"));
       const body = document.querySelector("#recruits-table tbody");
       body.innerHTML = "";
+      const dict = translations[currentLang];
       
       recruits.forEach(r => {
-        const badgeClass = r.status === "Contratada" ? "badge-success" : (r.status === "Entrevistada" ? "badge-info" : "badge-warning");
+        const statusLabel = dict[r.status] || r.status;
+        const badgeClass = r.status === "status_hired" ? "badge-success" : (r.status === "status_interviewed" ? "badge-info" : "badge-warning");
         body.innerHTML += `
           <tr>
             <td><b>${r.name}</b></td>
             <td>${r.academy}</td>
             <td>${r.phone}</td>
-            <td><span class="badge ${badgeClass}">${r.status}</span></td>
+            <td><span class="badge ${badgeClass}">${statusLabel}</span></td>
             <td>
-              <button class="btn-action" onclick="toggleRecruitStatus(${r.id})">Estado</button>
-              <button class="btn-action btn-action-primary" onclick="openWhatsApp('${r.phone}', 'Hola ${r.name}, te habla Yesenia de Nails with Love. Vi tu portafolio de manicurista y me llamó mucho la atención...')">Contactar</button>
+              <button class="btn-action" onclick="toggleRecruitStatus(${r.id})">${currentLang==='es'?'Estado':'Status'}</button>
+              <button class="btn-action btn-action-primary" onclick="openWhatsApp('${r.phone}', 'Hola ${r.name}, te habla Yesenia de Nails with Love. Vi tu portafolio de manicurista...')">${currentLang==='es'?'Contactar':'Contact'}</button>
             </td>
           </tr>
         `;
@@ -1071,28 +1440,28 @@
       const phone = document.getElementById("recruit-phone").value;
       
       if (!name || !phone) {
-        alert("Llena los campos obligatorios.");
+        alert(currentLang === 'es' ? "Llena los campos obligatorios." : "Fields are mandatory.");
         return;
       }
       
       const recruits = JSON.parse(localStorage.getItem("nw_recruits"));
-      recruits.push({ id: Date.now(), name, academy, phone, status: "Pendiente" });
+      recruits.push({ id: Date.now(), name, academy, phone, status: "status_pending" });
       localStorage.setItem("nw_recruits", JSON.stringify(recruits));
       
       document.getElementById("recruit-name").value = "";
       document.getElementById("recruit-phone").value = "";
       
       renderRecruits();
-      alert("Candidata registrada.");
+      alert(currentLang === 'es' ? "Candidata registrada." : "Academy candidate registered.");
     }
     
     function toggleRecruitStatus(id) {
       const recruits = JSON.parse(localStorage.getItem("nw_recruits"));
       const rec = recruits.find(r => r.id === id);
       if (rec) {
-        if (rec.status === "Pendiente") rec.status = "Entrevistada";
-        else if (rec.status === "Entrevistada") rec.status = "Contratada";
-        else rec.status = "Pendiente";
+        if (rec.status === "status_pending") rec.status = "status_interviewed";
+        else if (rec.status === "status_interviewed") rec.status = "status_hired";
+        else rec.status = "status_pending";
         
         localStorage.setItem("nw_recruits", JSON.stringify(recruits));
         renderRecruits();
@@ -1109,12 +1478,11 @@
           renderLeads();
         })
         .catch(err => {
-          // Fallback static leads if file not built yet
           localLeadsData = [
-            { osm_id: 1, name: "Peluquería Ego Ti", category: "Peluquería", neighborhood: "San Luis II", address: "Calle 71, San Luis II, Cali", status: "Pendiente" },
-            { osm_id: 2, name: "Javier Castillo Peluquería", category: "Peluquería", neighborhood: "San Vicente", address: "29N-16, Calle 29A Norte, Cali", status: "Pendiente" },
-            { osm_id: 3, name: "Jf Jhon Fredy peluquería", category: "Peluquería", neighborhood: "Versalles", address: "21-22, Avenida 6 Norte, Cali", status: "Contactado" },
-            { osm_id: 4, name: "Studio Vanity Beauty", category: "Salón de Estética", neighborhood: "Guayaquil", address: "22A-67, Calle 12, Cali", status: "Pendiente" }
+            { osm_id: 1, name: "Peluquería Ego Ti", category: "Peluquería", neighborhood: "San Luis II", address: "Calle 71, San Luis II, Cali", status: "status_pending" },
+            { osm_id: 2, name: "Javier Castillo Peluquería", category: "Peluquería", neighborhood: "San Vicente", address: "29N-16, Calle 29A Norte, Cali", status: "status_pending" },
+            { osm_id: 3, name: "Jf Jhon Fredy peluquería", category: "Peluquería", neighborhood: "Versalles", address: "21-22, Avenida 6 Norte, Cali", status: "status_contacted" },
+            { osm_id: 4, name: "Studio Vanity Beauty", category: "Salón de Estética", neighborhood: "Guayaquil", address: "22A-67, Calle 12, Cali", status: "status_pending" }
           ];
           renderLeads();
         });
@@ -1123,19 +1491,21 @@
     function renderLeads() {
       const body = document.querySelector("#leads-table tbody");
       body.innerHTML = "";
+      const dict = translations[currentLang];
       
       localLeadsData.forEach(l => {
-        const badgeClass = l.status === "Socio" ? "badge-success" : (l.status === "Contactado" ? "badge-info" : "badge-warning");
+        const statusLabel = dict[l.status] || l.status;
+        const badgeClass = l.status === "status_partner" ? "badge-success" : (l.status === "status_contacted" ? "badge-info" : "badge-warning");
         body.innerHTML += `
           <tr>
             <td><b>${l.name}</b></td>
             <td>${l.category}</td>
             <td>${l.neighborhood}</td>
             <td>${l.address}</td>
-            <td><span class="badge ${badgeClass}">${l.status}</span></td>
+            <td><span class="badge ${badgeClass}">${statusLabel}</span></td>
             <td>
-              <button class="btn-action" onclick="toggleLeadStatus(${l.osm_id})">Estado</button>
-              <button class="btn-action btn-action-primary" onclick="copyPitchB2B('${l.name}')">Copiar Pitch B2B</button>
+              <button class="btn-action" onclick="toggleLeadStatus(${l.osm_id})">${currentLang==='es'?'Estado':'Status'}</button>
+              <button class="btn-action btn-action-primary" onclick="copyPitchB2B('${l.name}')">${currentLang==='es'?'Copiar Pitch':'Copy Pitch'}</button>
             </td>
           </tr>
         `;
@@ -1145,9 +1515,9 @@
     function toggleLeadStatus(id) {
       const lead = localLeadsData.find(l => l.osm_id === id);
       if (lead) {
-        if (lead.status === "Pendiente") lead.status = "Contactado";
-        else if (lead.status === "Contactado") lead.status = "Socio";
-        else lead.status = "Pendiente";
+        if (lead.status === "status_pending") lead.status = "status_contacted";
+        else if (lead.status === "status_contacted") lead.status = "status_partner";
+        else lead.status = "status_pending";
         renderLeads();
       }
     }
@@ -1160,6 +1530,8 @@
 
     // 5. Marketing Hub Loader
     let marketingTemplates = {};
+    let currentMarketingTab = 'ads';
+    
     function loadMarketingHub() {
       fetch('data/marketing_content.json')
         .then(res => res.json())
@@ -1168,7 +1540,6 @@
           renderMarketingTab('ads');
         })
         .catch(err => {
-          // Mock data fallback
           marketingTemplates = {
             ads: [
               { title: "Promo Primera Cita Boutique", hook: "💅 Uñas boutique hechas con amor en casa.", body: "¡Hola Cali! Disfruta de semipermanente con diseño por solo COP $55.000.", cta: "Agenda por WhatsApp al 3108486630" }
@@ -1176,7 +1547,7 @@
             whatsapp_flows: [
               { stage: "Entrada Cliente", trigger: "Auto Link", template: "¡Hola Yesenia! Quiero conocer tus servicios..." }
             ],
-            outreach: [
+            outreach_templates: [
               { channel: "Propuesta de Alianza B2B", target: "Negocios locales", template: "Hola [Nombre], te saluda Yesenia de Nails with Love..." }
             ]
           };
@@ -1185,6 +1556,7 @@
     }
     
     function switchMarketingTab(type, el) {
+      currentMarketingTab = type;
       document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
       el.classList.add("active");
       renderMarketingTab(type);
@@ -1204,7 +1576,7 @@
           <div class="marketing-card">
             <div class="marketing-title">${title} <span style="font-size:12px; font-weight:normal; color:#71636a; margin-left:10px;">${details}</span></div>
             <div class="marketing-body" id="text-${title.replace(/\s+/g, '-')}">${bodyText}</div>
-            <button class="btn-action btn-action-primary" onclick="copyText('text-${title.replace(/\s+/g, '-')}')">Copiar Texto</button>
+            <button class="btn-action btn-action-primary" onclick="copyText('text-${title.replace(/\s+/g, '-')}')">${currentLang==='es'?'Copiar Texto':'Copy Text'}</button>
           </div>
         `;
       });
@@ -1219,6 +1591,7 @@
     
     function showCopyPopup() {
       const popup = document.getElementById("copy-popup");
+      popup.innerText = translations[currentLang].popup_copy;
       popup.classList.add("show");
       setTimeout(() => popup.classList.remove("show"), 2000);
     }
