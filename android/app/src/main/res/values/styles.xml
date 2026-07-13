@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.NailsWithLove" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#c97b8a</item>
+        <item name="colorPrimaryDark">#a8566a</item>
+        <item name="colorAccent">#c9a26d</item>
+        <item name="android:windowBackground">#2d1a20</item>
+        <item name="android:statusBarColor">#2d1a20</item>
+        <item name="android:navigationBarColor">#2d1a20</item>
+    </style>
+</resources>

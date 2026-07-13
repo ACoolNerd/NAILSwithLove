@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#c97b8a" />
+  <meta name="description" content="Nails with Love by Yesenia — Manicure y pedicure profesional a domicilio en Cali, Colombia. Reserva tu cita por WhatsApp." />
+  <title>Nails with Love by Yesenia</title>
+
+  <!-- PWA manifest -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon" href="images/icons/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="images/icons/icon-192.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Menú principal">
+    <div class="nav__inner">
+      <a href="#hero" class="nav__brand" aria-label="Nails with Love by Yesenia - Inicio">
+        <span class="nav__logo">💅</span>
+        <span class="nav__name">Nails with Love</span>
+      </a>
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__menu" id="navMenu" role="list">
+        <li><a href="#services">Servicios</a></li>
+        <li><a href="#pricing">Precios</a></li>
+        <li><a href="#portfolio">Portafolio</a></li>
+        <li><a href="#about">Yesenia</a></li>
+        <li><a href="#loyalty">Fidelización</a></li>
+        <li><a href="#contact" class="nav__cta">Reservar</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="hero" aria-label="Bienvenida">
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <p class="hero__tag">Cali, Colombia · Servicio a domicilio</p>
+      <h1 class="hero__title">Nails with Love<br /><span>by Yesenia</span></h1>
+      <p class="hero__tagline">Uñas hechas con amor,<br />en la comodidad de tu hogar.</p>
+      <div class="hero__offer">
+        <span class="offer__badge">Primera cita</span>
+        <span class="offer__detail">Semipermanente + arte sencillo</span>
+        <span class="offer__price">COP 55.000</span>
+      </div>
+      <a href="https://wa.me/573108486630?text=Hola%20Yesenia%2C%20quiero%20reservar%20mi%20primera%20cita%20💅"
+         class="btn btn--primary btn--lg"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="Reservar cita por WhatsApp">
+        Reservar por WhatsApp
+      </a>
+    </div>
+    <div class="hero__portrait" aria-hidden="true">
+      <img src="images/yesenia-portrait.jpg"
+           alt="Yesenia, especialista en nail art en Cali Colombia"
+           width="420" height="560"
+           loading="eager" />
+    </div>
+  </section>
+
+  <!-- ── TRUST BAR ── -->
+  <div class="trust-bar" role="complementary" aria-label="Puntos destacados">
+    <div class="trust-bar__inner">
+      <div class="trust-bar__item">
+        <span class="trust-bar__icon" aria-hidden="true">🏠</span>
+        <span>Boutique en casa</span>
+      </div>
+      <div class="trust-bar__item">
+        <span class="trust-bar__icon" aria-hidden="true">🚗</span>
+        <span>Servicio a domicilio</span>
+      </div>
+      <div class="trust-bar__item">
+        <span class="trust-bar__icon" aria-hidden="true">🧴</span>
+        <span>Bioseguridad certificada</span>
+      </div>
+      <div class="trust-bar__item">
+        <span class="trust-bar__icon" aria-hidden="true">💳</span>
+        <span>Nequi · Efectivo · Tarjeta</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SERVICES ── -->
+  <section class="section" id="services" aria-labelledby="services-heading">
+    <div class="container">
+      <h2 class="section__title" id="services-heading">Servicios</h2>
+      <p class="section__sub">Cada servicio está respaldado por formación certificada y productos profesionales verificados.</p>
+      <div class="services__grid">
+
+        <article class="service-card" aria-label="Manicure clásico">
+          <div class="service-card__icon" aria-hidden="true">✨</div>
+          <h3 class="service-card__name">Manicure clásico</h3>
+          <p class="service-card__desc">Limpieza, cutícula, forma, hidratación y esmalte regular.</p>
+        </article>
+
+        <article class="service-card" aria-label="Manicure semipermanente">
+          <div class="service-card__icon" aria-hidden="true">💅</div>
+          <h3 class="service-card__name">Manicure semipermanente</h3>
+          <p class="service-card__desc">Gel UV de larga duración con acabado espejo o mate.</p>
+        </article>
+
+        <article class="service-card" aria-label="Pedicure clásico">
+          <div class="service-card__icon" aria-hidden="true">🦶</div>
+          <h3 class="service-card__name">Pedicure clásico</h3>
+          <p class="service-card__desc">Baño, exfoliación, cutícula, forma y esmalte regular.</p>
+        </article>
+
+        <article class="service-card" aria-label="Pedicure semipermanente">
+          <div class="service-card__icon" aria-hidden="true">🌸</div>
+          <h3 class="service-card__name">Pedicure semipermanente</h3>
+          <p class="service-card__desc">Gel UV duradero para pies con cuidado completo.</p>
+        </article>
+
+        <article class="service-card" aria-label="Extensiones Gel X">
+          <div class="service-card__icon" aria-hidden="true">💎</div>
+          <h3 class="service-card__name">Gel X / Soft Gel</h3>
+          <p class="service-card__desc">Puntas de gel suave para largo natural y resistencia extra.</p>
+        </article>
+
+        <article class="service-card" aria-label="Juego de acrílico">
+          <div class="service-card__icon" aria-hidden="true">🔮</div>
+          <h3 class="service-card__name">Acrílico completo</h3>
+          <p class="service-card__desc">Juego completo con forma personalizada y mantenimiento.</p>
+        </article>
+
+        <article class="service-card" aria-label="Arte de uñas">
+          <div class="service-card__icon" aria-hidden="true">🎨</div>
+          <h3 class="service-card__name">Nail art</h3>
+          <p class="service-card__desc">Francés, baby boomer, cromado, ojo de gato, aura, ombré y arte de temporada.</p>
+        </article>
+
+        <article class="service-card" aria-label="Servicio para novias y eventos">
+          <div class="service-card__icon" aria-hidden="true">👰</div>
+          <h3 class="service-card__name">Novias y eventos</h3>
+          <p class="service-card__desc">Paquetes grupales y corporativos con reserva anticipada.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRICING ── -->
+  <section class="section section--alt" id="pricing" aria-labelledby="pricing-heading">
+    <div class="container">
+      <h2 class="section__title" id="pricing-heading">Tarifas</h2>
+      <p class="section__sub">Precios en pesos colombianos (COP). Incluye insumos y atención personalizada.</p>
+
+      <div class="pricing__grid">
+        <div class="pricing__group">
+          <h3 class="pricing__group-title">Manicure</h3>
+          <ul class="pricing__list" role="list">
+            <li><span>Clásico</span><span>$35.000</span></li>
+            <li><span>Semipermanente</span><span>$55.000–80.000</span></li>
+            <li><span>Rubber / Builder overlay</span><span>desde $80.000</span></li>
+            <li><span>Gel X / Soft Gel</span><span>$120.000–145.000</span></li>
+            <li><span>Acrílico completo</span><span>$135.000–165.000</span></li>
+            <li><span>Mantenimiento acrílico</span><span>$85.000–110.000</span></li>
+          </ul>
+        </div>
+
+        <div class="pricing__group">
+          <h3 class="pricing__group-title">Pedicure</h3>
+          <ul class="pricing__list" role="list">
+            <li><span>Clásico</span><span>$45.000–55.000</span></li>
+            <li><span>Semipermanente</span><span>$60.000–80.000</span></li>
+          </ul>
+          <h3 class="pricing__group-title" style="margin-top:1.5rem">Combos</h3>
+          <ul class="pricing__list" role="list">
+            <li><span>Mani + Pedi semipermanente</span><span>$105.000–150.000</span></li>
+            <li><span>Novias / Eventos</span><span>desde $180.000</span></li>
+          </ul>
+        </div>
+
+        <div class="pricing__group">
+          <h3 class="pricing__group-title">Complementos</h3>
+          <ul class="pricing__list" role="list">
+            <li><span>Francés</span><span>$10.000–25.000</span></li>
+            <li><span>Arte sencillo</span><span>$10.000</span></li>
+            <li><span>Arte detallado</span><span>desde $20.000</span></li>
+            <li><span>Cromado / Ojo de gato</span><span>$15.000–25.000</span></li>
+            <li><span>Reparación</span><span>$8.000/uña</span></li>
+            <li><span>Removido</span><span>$15.000–30.000</span></li>
+            <li><span>Largo extra</span><span>desde $15.000</span></li>
+            <li><span>Desplazamiento</span><span>Cotización previa</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="first-visit-banner" aria-label="Oferta primera cita">
+        <div class="first-visit-banner__text">
+          <strong>🌸 Primera cita especial</strong>
+          <span>Semipermanente + arte sencillo</span>
+        </div>
+        <div class="first-visit-banner__price">COP 55.000</div>
+        <a href="https://wa.me/573108486630?text=Hola%20Yesenia%2C%20quiero%20mi%20primera%20cita%20especial%20💅"
+           class="btn btn--primary"
+           target="_blank" rel="noopener noreferrer">
+          Reservar ahora
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PORTFOLIO ── -->
+  <section class="section" id="portfolio" aria-labelledby="portfolio-heading">
+    <div class="container">
+      <h2 class="section__title" id="portfolio-heading">Portafolio</h2>
+      <p class="section__sub">Trabajos reales · Clientes reales · Resultados reales</p>
+      <div class="portfolio__grid" id="portfolioGrid" aria-label="Galería de trabajos">
+        <!-- Portfolio images are loaded here; replace with real client photos (with consent) -->
+        <div class="portfolio__placeholder" aria-label="Imagen de portafolio próximamente">
+          <span>💅</span><p>Fotos del portafolio<br />próximamente</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section class="section section--alt" id="about" aria-labelledby="about-heading">
+    <div class="container about__inner">
+      <div class="about__image">
+        <img src="images/yesenia-portrait.jpg"
+             alt="Yesenia, especialista certificada en uñas profesionales, Cali Colombia"
+             width="380" height="500"
+             loading="lazy" />
+      </div>
+      <div class="about__text">
+        <h2 class="section__title" id="about-heading">Hola, soy Yesenia 👋</h2>
+        <p>Soy técnica profesional en nail art con sede en Cali, Colombia. Mi pasión es crear uñas que te hagan sentir segura y hermosa, con los más altos estándares de bioseguridad e higiene.</p>
+        <p>Ofrezco un servicio personalizado, puntual y de calidad — ya sea en mi boutique en casa o llegando a tu puerta.</p>
+        <ul class="about__badges" role="list">
+          <li>✅ Formación certificada en nail art</li>
+          <li>✅ Protocolo de bioseguridad (Resolución 2117/2010)</li>
+          <li>✅ Productos profesionales verificados e INVIMA</li>
+          <li>✅ Puntualidad y respeto a tu tiempo</li>
+          <li>✅ Fotos con tu consentimiento</li>
+        </ul>
+        <a href="https://wa.me/573108486630?text=Hola%20Yesenia%2C%20quiero%20conocer%20más%20de%20tus%20servicios%20💅"
+           class="btn btn--outline"
+           target="_blank" rel="noopener noreferrer">
+          Escríbeme por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LOYALTY ── -->
+  <section class="section" id="loyalty" aria-labelledby="loyalty-heading">
+    <div class="container">
+      <h2 class="section__title" id="loyalty-heading">Love Points 💖</h2>
+      <p class="section__sub">Tu fidelidad tiene recompensa</p>
+      <div class="loyalty__grid">
+        <div class="loyalty__card">
+          <div class="loyalty__icon" aria-hidden="true">🌟</div>
+          <h3>Acumula puntos</h3>
+          <p>Gana <strong>1 punto</strong> por cada COP 1.000 gastados en tu servicio.</p>
+        </div>
+        <div class="loyalty__card">
+          <div class="loyalty__icon" aria-hidden="true">🎁</div>
+          <h3>Canjea créditos</h3>
+          <p>Al llegar a <strong>400 puntos</strong>, recibe COP 20.000 de crédito para tu próximo servicio.</p>
+        </div>
+        <div class="loyalty__card">
+          <div class="loyalty__icon" aria-hidden="true">👯</div>
+          <h3>Refiere y gana</h3>
+          <p>Cuando tu referida completa su primera cita pagada, <strong>ambas</strong> reciben COP 15.000 de crédito.</p>
+        </div>
+        <div class="loyalty__card">
+          <div class="loyalty__icon" aria-hidden="true">🏆</div>
+          <h3>Hito de 6 visitas</h3>
+          <p>En tu sexta visita, recibe <strong>arte sencillo o hidratación gratis</strong> como regalo especial.</p>
+        </div>
+      </div>
+      <p class="loyalty__note">Los créditos vencen a los 90 días, no son efectivo y no se combinan con otras promociones.</p>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section class="section section--alt" aria-labelledby="how-heading">
+    <div class="container">
+      <h2 class="section__title" id="how-heading">¿Cómo reservar?</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step__num" aria-hidden="true">1</div>
+          <h3>Escríbeme</h3>
+          <p>Envíame un WhatsApp con el servicio que deseas y tu zona en Cali.</p>
+        </div>
+        <div class="step__arrow" aria-hidden="true">→</div>
+        <div class="step">
+          <div class="step__num" aria-hidden="true">2</div>
+          <h3>Acordamos la cita</h3>
+          <p>Te confirmo disponibilidad, precio exacto y política de depósito.</p>
+        </div>
+        <div class="step__arrow" aria-hidden="true">→</div>
+        <div class="step">
+          <div class="step__num" aria-hidden="true">3</div>
+          <h3>Servicio y pago</h3>
+          <p>Disfruta tu servicio. Pagamos con Nequi, efectivo, tarjeta o transferencia.</p>
+        </div>
+        <div class="step__arrow" aria-hidden="true">→</div>
+        <div class="step">
+          <div class="step__num" aria-hidden="true">4</div>
+          <h3>Reagenda</h3>
+          <p>Te recuerdo tu próximo mantenimiento y acumulas tus Love Points.</p>
+        </div>
+      </div>
+      <div class="center">
+        <a href="https://wa.me/573108486630?text=Hola%20Yesenia%2C%20quiero%20reservar%20una%20cita%20💅"
+           class="btn btn--primary btn--lg"
+           target="_blank" rel="noopener noreferrer">
+          💬 Reservar por WhatsApp +57 310 848 6630
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section class="section" id="contact" aria-labelledby="contact-heading">
+    <div class="container contact__inner">
+      <div class="contact__info">
+        <h2 class="section__title" id="contact-heading">Contacto</h2>
+        <ul class="contact__list" role="list">
+          <li>
+            <span class="contact__label">WhatsApp</span>
+            <a href="https://wa.me/573108486630" target="_blank" rel="noopener noreferrer">
+              +57 310 848 6630
+            </a>
+          </li>
+          <li>
+            <span class="contact__label">Instagram</span>
+            <a href="https://instagram.com/[INSTAGRAM]" target="_blank" rel="noopener noreferrer">
+              @[INSTAGRAM]
+            </a>
+          </li>
+          <li>
+            <span class="contact__label">Zona de cobertura</span>
+            <span>Cali, Colombia (cobertura exacta por consultar)</span>
+          </li>
+          <li>
+            <span class="contact__label">Pagos</span>
+            <span>Nequi · Efectivo · Visa/Mastercard · Transferencia</span>
+          </li>
+        </ul>
+      </div>
+      <div class="contact__booking">
+        <a href="https://wa.me/573108486630?text=Hola%20Yesenia%2C%20quiero%20reservar%20mi%20cita%20💅"
+           class="btn btn--primary btn--lg btn--full"
+           target="_blank" rel="noopener noreferrer">
+          💬 Escribir a Yesenia
+        </a>
+        <p class="contact__note">No publiques la dirección residencial. La zona de atención en boutique se confirmará una vez aprobado el uso del suelo municipal.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="section section--alt" aria-labelledby="faq-heading">
+    <div class="container">
+      <h2 class="section__title" id="faq-heading">Preguntas frecuentes</h2>
+      <div class="faq" role="list">
+
+        <details class="faq__item" role="listitem">
+          <summary class="faq__q">¿Necesito hacer una cita?</summary>
+          <p class="faq__a">Sí, todas las citas son con reserva previa por WhatsApp para garantizar disponibilidad y tiempo exclusivo para ti.</p>
+        </details>
+
+        <details class="faq__item" role="listitem">
+          <summary class="faq__q">¿Qué formas de pago aceptas?</summary>
+          <p class="faq__a">Nequi, efectivo, Visa/Mastercard contactless, transferencia bancaria y enlaces de pago. Nunca se acepta captura de pantalla como comprobante.</p>
+        </details>
+
+        <details class="faq__item" role="listitem">
+          <summary class="faq__q">¿Tienes protocolo de bioseguridad?</summary>
+          <p class="faq__a">Sí. Seguimos la Resolución 2117 de 2010 y el manual de bioseguridad de la Resolución 2827 de 2006. Herramientas esterilizadas, insumos desechables y área de trabajo desinfectada antes de cada cliente.</p>
+        </details>
+
+        <details class="faq__item" role="listitem">
+          <summary class="faq__q">¿Haces servicio a domicilio?</summary>
+          <p class="faq__a">Sí, en la zona de cobertura de Cali. El costo de desplazamiento se cotiza según la dirección. Consúltame por WhatsApp.</p>
+        </details>
+
+        <details class="faq__item" role="listitem">
+          <summary class="faq__q">¿Qué pasa si necesito cancelar?</summary>
+          <p class="faq__a">Avisa con al menos 24 horas de anticipación. Las cancelaciones tardías o inasistencias pueden resultar en la retención del depósito.</p>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <p class="footer__brand">💅 Nails with Love by Yesenia</p>
+      <p class="footer__location">Cali, Colombia</p>
+      <div class="footer__links">
+        <a href="https://wa.me/573108486630" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="https://instagram.com/[INSTAGRAM]" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </div>
+      <p class="footer__legal">
+        Los precios están en COP y sujetos a cambio. Esta página no publica la dirección residencial hasta obtener el concepto de uso del suelo municipal de Cali.
+        <a href="#privacy">Política de privacidad</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ── PRIVACY NOTICE (anchor) ── -->
+  <section id="privacy" class="section" aria-labelledby="privacy-heading" style="display:none">
+    <div class="container">
+      <h2 id="privacy-heading">Política de privacidad y consentimiento</h2>
+      <p>Los datos personales recopilados (nombre, celular, historial de servicio) se usan exclusivamente para gestionar citas, recordatorios y el programa de fidelización. No se comparten con terceros. Las fotografías de trabajo se toman únicamente con consentimiento expreso del cliente. Puedes solicitar la eliminación de tus datos escribiendo al WhatsApp de contacto.</p>
+    </div>
+  </section>
+
+  <!-- ── FLOATING WHATSAPP BUTTON ── -->
+  <a href="https://wa.me/573108486630?text=Hola%20Yesenia%2C%20quiero%20reservar%20una%20cita%20💅"
+     class="fab-whatsapp"
+     target="_blank" rel="noopener noreferrer"
+     aria-label="Contactar por WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  </a>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

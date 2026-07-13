@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Nails with Love</string>
+    <string name="whatsapp_number">+57 310 848 6630</string>
+    <string name="offline_title">Sin conexión</string>
+    <string name="offline_message">Regresa cuando tengas señal o escríbenos por WhatsApp.</string>
+    <string name="retry">Reintentar</string>
+    <string name="contact_whatsapp">WhatsApp +57 310 848 6630</string>
+</resources>

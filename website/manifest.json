@@ -1,0 +1,32 @@
+{
+  "name": "Nails with Love by Yesenia",
+  "short_name": "NailsYesenia",
+  "description": "Manicure y pedicure profesional a domicilio en Cali, Colombia. Reserva por WhatsApp +57 310 848 6630.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#2d1a20",
+  "theme_color": "#c97b8a",
+  "orientation": "portrait-primary",
+  "lang": "es",
+  "categories": ["beauty", "lifestyle"],
+  "icons": [
+    {
+      "src": "images/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "share_target": {
+    "action": "/",
+    "method": "GET",
+    "params": { "title": "title", "text": "text", "url": "url" }
+  }
+}

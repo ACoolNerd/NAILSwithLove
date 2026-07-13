@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2d1a20">
+
+    <!-- WebView fills the full screen -->
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible" />
+
+    <!-- Offline fallback layout (hidden by default) -->
+    <LinearLayout
+        android:id="@+id/offlineLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp"
+        android:visibility="gone"
+        android:background="#2d1a20">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="💅"
+            android:textSize="56sp"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nails with Love\nby Yesenia"
+            android:textColor="#f5dde2"
+            android:textSize="26sp"
+            android:fontFamily="serif"
+            android:textAlignment="center"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sin conexión a internet"
+            android:textColor="#c97b8a"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Regresa cuando tengas señal o escríbenos por WhatsApp."
+            android:textColor="#aaaaaa"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:layout_marginBottom="32dp" />
+
+        <Button
+            android:id="@+id/btnWhatsApp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WhatsApp +57 310 848 6630"
+            android:backgroundTint="#25D366"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnRetry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reintentar"
+            android:backgroundTint="#c97b8a"
+            android:textColor="#ffffff" />
+
+    </LinearLayout>
+
+</RelativeLayout>
