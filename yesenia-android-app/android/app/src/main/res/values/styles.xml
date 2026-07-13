@@ -1,0 +1,20 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.NailsWithLove" parent="Theme.MaterialComponents.DayNight">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#7A2036</item>
+        <item name="colorPrimaryVariant">#3A1420</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">#C9A227</item>
+        <item name="colorSecondaryVariant">#FFF9F5</item>
+        <item name="colorOnSecondary">#3A1420</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">#7A2036</item>
+    </style>
+
+    <style name="Theme.NailsWithLove.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+</resources>

@@ -1,0 +1,11 @@
+node_modules/
+.DS_Store
+*.tmp
+face_*.png
+p1.png
+p2.png
+p3.png
+p4.png
+concept_small.jpg
+collage_fixed_vertical.png
+pkcs11.txt
