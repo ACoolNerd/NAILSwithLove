@@ -12,10 +12,10 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Button;
 import android.content.Intent;
 import android.net.Uri;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -80,6 +80,19 @@ public class MainActivity extends AppCompatActivity {
 
         webView.setWebChromeClient(new WebChromeClient());
 
+        /* ── Back navigation using OnBackPressedDispatcher (API 33+ compatible) ── */
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (webView.canGoBack()) {
+                    webView.goBack();
+                } else {
+                    setEnabled(false);
+                    getOnBackPressedDispatcher().onBackPressed();
+                }
+            }
+        });
+
         /* ── Buttons ── */
         btnWhatsApp.setOnClickListener(v ->
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(WHATSAPP_LINK))));
@@ -107,15 +120,6 @@ public class MainActivity extends AppCompatActivity {
             offlineLayout.setVisibility(View.GONE);
             webView.setVisibility(View.VISIBLE);
             webView.reload();
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (webView.canGoBack()) {
-            webView.goBack();
-        } else {
-            super.onBackPressed();
         }
     }
 

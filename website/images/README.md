@@ -23,7 +23,7 @@ The icons should use the brand rose color (`#c97b8a`) background with the nail e
 images/portfolio/
 ├── 01-gel-x-chrome.jpg
 ├── 02-acrylic-french.jpg
-├── 03-semiperma-catye.jpg
+├── 03-semiperma-cateye.jpg
 ...
 ```
 
