@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Trabaja con Nosotros | Nails with Love by Yesenia</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --burgundy: #7A2036;
+      --burgundy-dark: #3A1420;
+      --gold: #C9A227;
+      --blush: #FBEEE6;
+      --bg: #FFF9F5;
+      --white: #FFFFFF;
+      --border: 1px solid #ead5d7;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Outfit', sans-serif;
+    }
+    
+    body {
+      background-color: var(--bg);
+      color: var(--burgundy-dark);
+      line-height: 1.6;
+      padding-bottom: 50px;
+    }
+    
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .wrap {
+      max-width: 800px;
+      margin: auto;
+      padding: 0 24px;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: var(--burgundy);
+      color: var(--white);
+      padding: 60px 0;
+      text-align: center;
+      border-bottom: 5px solid var(--gold);
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 48px);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--blush);
+      max-width: 550px;
+      margin: auto;
+    }
+
+    /* Info Cards */
+    .section-title {
+      font-size: 28px;
+      color: var(--burgundy);
+      margin: 40px 0 20px;
+      text-align: center;
+    }
+
+    .card {
+      background: var(--white);
+      border: var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 30px rgba(58, 20, 32, 0.04);
+    }
+
+    /* Interactive Calculator */
+    .calc-slider-group {
+      margin-bottom: 20px;
+    }
+
+    .calc-label {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .calc-slider {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: var(--blush);
+      outline: none;
+      accent-color: var(--burgundy);
+      cursor: pointer;
+    }
+
+    .results-panel {
+      background: var(--blush);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .results-title {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #71636a;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .results-value {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--burgundy);
+    }
+
+    /* Grid layout */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media(max-width: 500px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .info-item {
+      padding: 12px;
+      border-left: 3px solid var(--gold);
+      background: rgba(251, 238, 230, 0.3);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .info-item h4 {
+      color: var(--burgundy);
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .info-item p {
+      font-size: 14px;
+      color: #71636a;
+    }
+
+    /* Form and CTAs */
+    .btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: var(--gold);
+      color: var(--burgundy-dark);
+      padding: 16px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 18px;
+      margin-top: 20px;
+      box-shadow: 0 6px 20px rgba(201, 162, 39, 0.2);
+      transition: var(--transition);
+    }
+
+    .btn:hover {
+      background: var(--burgundy-dark);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: var(--border);
+      font-size: 16px;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      outline: none;
+    }
+
+    .input-field:focus {
+      border-color: var(--burgundy);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 30px 0;
+      font-size: 14px;
+      color: #71636a;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="wrap">
+      <h1>Trabaja con Nosotros</h1>
+      <p>Únete a Nails with Love y gana excelentes comisiones como manicurista boutique a domicilio en Cali.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    
+    <!-- Earnings Calculator -->
+    <h2 class="section-title">Calculadora de Ganancias</h2>
+    <section class="card">
+      <div class="calc-slider-group">
+        <label class="calc-label">
+          <span>Servicios por día</span>
+          <span id="services-val">3</span>
+        </label>
+        <input type="range" id="services-slider" min="1" max="5" value="3" class="calc-slider" oninput="calculatePayout()">
+      </div>
+
+      <div class="calc-slider-group">
+        <label class="calc-label">
+          <span>Días trabajados por semana</span>
+          <span id="days-val">5</span>
+        </label>
+        <input type="range" id="days-slider" min="1" max="6" value="5" class="calc-slider" oninput="calculatePayout()">
+      </div>
+
+      <div class="results-panel">
+        <div class="results-title">Tus ingresos mensuales estimados</div>
+        <div class="results-value" id="monthly-earnings">COP $2.970.000</div>
+        <p style="font-size:12px; color:#71636a; margin-top:8px;">
+          Calculado sobre un ticket promedio de COP $90.000 con comisión del 50% para ti. ¡Propinas no incluidas!
+        </p>
+      </div>
+    </section>
+
+    <!-- Recruitment Zones -->
+    <h2 class="section-title">Zonas de Cobertura en Cali</h2>
+    <section class="card">
+      <div class="info-grid">
+        <div class="info-item">
+          <h4>Zona Norte</h4>
+          <p>Versalles, Granada, Vipasa, Juanambú y alrededores.</p>
+        </div>
+        <div class="info-item">
+          <h4>Zona Sur</h4>
+          <p>Ciudad Jardín, Pance, Valle del Lili, San Joaquín.</p>
+        </div>
+        <div class="info-item">
+          <h4>Zona Oeste</h4>
+          <p>El Peñón, San Antonio, Cristales, Santa Teresita.</p>
+        </div>
+        <div class="info-item">
+          <h4>Home Boutique</h4>
+          <p>Atención directa en nuestra sede física.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <h2 class="section-title">Tus Beneficios</h2>
+    <section class="card">
+      <ul style="list-style-type: none; padding-left: 5px;">
+        <li style="margin-bottom: 12px;">✅ **50% de comisión** sobre el valor de cada servicio realizado.</li>
+        <li style="margin-bottom: 12px;">✅ Quedas con el **100% de tus propinas**.</li>
+        <li style="margin-bottom: 12px;">✅ Capacitación gratuita en nuestra academia técnica (bioseguridad y Gel-X).</li>
+        <li style="margin-bottom: 12px;">✅ Flexibilidad completa: Elige tus días y horarios de trabajo.</li>
+        <li style="margin-bottom: 12px;">✅ Kits iniciales de esmaltado y bioseguridad provistos por la marca.</li>
+      </ul>
+    </section>
+
+    <!-- Application Form -->
+    <h2 class="section-title">Postúlate Hoy</h2>
+    <section class="card">
+      <div>
+        <label style="font-weight:600;">Nombre Completo</label>
+        <input type="text" id="app-name" class="input-field" placeholder="Tu nombre">
+      </div>
+      <div>
+        <label style="font-weight:600;">Barrio de Residencia</label>
+        <input type="text" id="app-barrio" class="input-field" placeholder="Ej: San Antonio">
+      </div>
+      <div>
+        <label style="font-weight:600;">Experiencia (Años/Meses)</label>
+        <input type="text" id="app-experience" class="input-field" placeholder="Ej: 1 año en semipermanente">
+      </div>
+      <button class="btn" onclick="sendApplication()">Enviar por WhatsApp</button>
+    </section>
+
+  </main>
+
+  <footer class="footer wrap">
+    <p>Nails with Love by Yesenia · Cali, Colombia</p>
+  </footer>
+
+  <script>
+    function calculatePayout() {
+      const services = parseInt(document.getElementById("services-slider").value);
+      const days = parseInt(document.getElementById("days-slider").value);
+      
+      document.getElementById("services-val").innerText = services;
+      document.getElementById("days-val").innerText = days;
+      
+      // Math: services/day * days/week * 4.4 weeks/month * average ticket (90000) * 50% commission (0.5)
+      const ticketVal = 90000;
+      const commissionRate = 0.5;
+      const weeklyRevenue = services * ticketVal * days * commissionRate;
+      const monthlyRevenue = Math.round(weeklyRevenue * 4.4);
+      
+      document.getElementById("monthly-earnings").innerText = `COP $${monthlyRevenue.toLocaleString()}`;
+    }
+
+    function sendApplication() {
+      const name = document.getElementById("app-name").value;
+      const barrio = document.getElementById("app-barrio").value;
+      const exp = document.getElementById("app-experience").value;
+      
+      if (!name || !barrio || !exp) {
+        alert("Por favor completa todos los campos del formulario.");
+        return;
+      }
+      
+      const text = `¡Hola Yesenia! Me gustaría postularme como manicurista. Mi nombre es ${name}, vivo en el barrio ${barrio} y tengo experiencia en: ${exp}.`;
+      const url = `https://wa.me/573108486630?text=${encodeURIComponent(text)}`;
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>

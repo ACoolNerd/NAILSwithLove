@@ -223,7 +223,7 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    /* Mobile Bottom Navigation (Visible on Mobile only) */
+    /* Mobile Bottom Navigation (Scrollable 7 Links) */
     .mobile-nav {
       display: none;
       position: fixed;
@@ -233,10 +233,16 @@
       height: 64px;
       background: var(--burgundy-dark);
       z-index: 1000;
-      justify-content: space-around;
+      justify-content: flex-start;
       align-items: center;
       box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
       border-top: 1px solid rgba(255,255,255,0.1);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .mobile-nav::-webkit-scrollbar {
+      display: none;
     }
 
     .mobile-nav-link {
@@ -246,9 +252,10 @@
       justify-content: center;
       color: rgba(255, 255, 255, 0.6);
       text-decoration: none;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 600;
-      width: 16%;
+      flex-shrink: 0;
+      min-width: 68px;
       height: 100%;
       transition: var(--transition);
     }
@@ -676,6 +683,10 @@
       <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
       <span data-i18n="nav_recruits">Academia</span>
     </a>
+    <a href="#" class="mobile-nav-link" id="m-nav-finanzas" onclick="switchView('finanzas', this, true)">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.88 9.54c-.1.53-.35.98-.75 1.36-.4.38-.91.64-1.52.79V15H10.4v-1.3c-.56-.07-1.06-.24-1.5-.5-.44-.27-.78-.65-1.03-1.15l1.16-.76c.17.34.42.61.73.79.31.18.67.28 1.08.28.43 0 .76-.08.99-.25.23-.17.34-.38.34-.63 0-.25-.13-.44-.38-.59-.26-.14-.73-.28-1.42-.42-.82-.16-1.46-.43-1.92-.81-.46-.38-.69-.93-.69-1.63 0-.68.25-1.23.75-1.66s1.14-.68 1.92-.76V4h1.22v1.32c.5.06.94.2 1.32.41.38.22.69.52.92.9l-1.08.74c-.16-.26-.37-.46-.62-.6-.25-.14-.57-.2-.96-.2-.36 0-.64.08-.85.24s-.32.36-.32.6c0 .24.11.42.34.54.23.12.72.26 1.48.42.82.17 1.45.45 1.9.83s.67.92.67 1.62z"/></svg>
+      <span data-i18n="nav_finances">Finanzas</span>
+    </a>
   </nav>
 
   <!-- Main App Layout -->
@@ -722,6 +733,12 @@
           <a href="#" class="menu-link" id="d-nav-reclutamiento" onclick="switchView('reclutamiento', this)">
             <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
             <span data-i18n="nav_recruits">Reclutamiento</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="menu-link" id="d-nav-finanzas" onclick="switchView('finanzas', this)">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.88 9.54c-.1.53-.35.98-.75 1.36-.4.38-.91.64-1.52.79V15H10.4v-1.3c-.56-.07-1.06-.24-1.5-.5-.44-.27-.78-.65-1.03-1.15l1.16-.76c.17.34.42.61.73.79.31.18.67.28 1.08.28.43 0 .76-.08.99-.25.23-.17.34-.38.34-.63 0-.25-.13-.44-.38-.59-.26-.14-.73-.28-1.42-.42-.82-.16-1.46-.43-1.92-.81-.46-.38-.69-.93-.69-1.63 0-.68.25-1.23.75-1.66s1.14-.68 1.92-.76V4h1.22v1.32c.5.06.94.2 1.32.41.38.22.69.52.92.9l-1.08.74c-.16-.26-.37-.46-.62-.6-.25-.14-.57-.2-.96-.2-.36 0-.64.08-.85.24s-.32.36-.32.6c0 .24.11.42.34.54.23.12.72.26 1.48.42.82.17 1.45.45 1.9.83s.67.92.67 1.62z"/></svg>
+            <span data-i18n="nav_finances">Finanzas</span>
           </a>
         </li>
         <li class="menu-item" style="margin-top: auto;">
@@ -994,6 +1011,34 @@
           </div>
         </div>
       </section>
+
+      <!-- VIEW: FINANZAS (SCALED PROJECTIONS) -->
+      <section id="view-finanzas" class="view-section">
+        <div class="card-panel">
+          <h3 class="panel-title" data-i18n="panel_finances">Modelo de Escalamiento Financiero</h3>
+          <p style="margin-bottom: 20px; font-size:14.5px; color:#71636a;" data-i18n="desc_finances">
+            Proyecciones financieras mensuales en pesos colombianos (COP) según la cantidad de estilistas activas y splits con el inversor (20%).
+          </p>
+          <div class="data-table-container">
+            <table class="data-table" id="finances-table">
+              <thead>
+                <tr>
+                  <th data-i18n="th_milestone">Hito (Técnicas)</th>
+                  <th data-i18n="th_revenue">Ingresos Brutos</th>
+                  <th data-i18n="th_payout_tech">Pago Técnicas (50%)</th>
+                  <th data-i18n="th_op_costs">Costos Operativos</th>
+                  <th data-i18n="th_net_profit">Utilidad Neta</th>
+                  <th data-i18n="th_payout_investor">Pago Inversionista (20%)</th>
+                  <th data-i18n="th_payout_yesenia">Ganancia Yesenia</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
       
     </main>
   </div>
@@ -1015,6 +1060,7 @@
         nav_leads: "Leads",
         nav_marketing: "Promo",
         nav_recruits: "Academia",
+        nav_finances: "Finanzas",
         nav_logout: "Cerrar Sesión",
         title_dashboard: "Panel de Control",
         metric_sales: "Ingresos Mensuales",
@@ -1034,6 +1080,8 @@
         desc_salons_cali: "Datos obtenidos localmente mediante geolocalización. Úsalos para coordinar alianzas comerciales y comisiones del 10% por referido.",
         panel_new_grad: "Nueva Candidata (Egresada Academia)",
         panel_pipeline: "Pipeline de Contratación",
+        panel_finances: "Modelo de Escalamiento Financiero",
+        desc_finances: "Proyecciones financieras mensuales en pesos colombianos (COP) según la cantidad de estilistas activas y splits con el inversor (20%).",
         th_client: "Cliente",
         th_service: "Servicio",
         th_time: "Hora",
@@ -1052,6 +1100,13 @@
         th_outreach: "Contacto B2B",
         th_candidate: "Candidata",
         th_academy: "Academia",
+        th_milestone: "Hito (Técnicas)",
+        th_revenue: "Ingresos Brutos",
+        th_payout_tech: "Pago Técnicas (50%)",
+        th_op_costs: "Costos Operativos",
+        th_net_profit: "Utilidad Neta",
+        th_payout_investor: "Pago Inversionista (20%)",
+        th_payout_yesenia: "Ganancia Yesenia (80% + Personal)",
         lbl_client: "Cliente",
         lbl_service: "Servicio",
         lbl_date: "Fecha",
@@ -1090,6 +1145,7 @@
         nav_leads: "Leads",
         nav_marketing: "Promo",
         nav_recruits: "Academy",
+        nav_finances: "Finances",
         nav_logout: "Logout",
         title_dashboard: "Dashboard",
         metric_sales: "Monthly Revenue",
@@ -1109,6 +1165,8 @@
         desc_salons_cali: "Data retrieved locally via geocoding. Use these to coordinate business alliances and 10% referral commissions.",
         panel_new_grad: "New Candidate (Academy Graduate)",
         panel_pipeline: "Hiring Pipeline",
+        panel_finances: "Financial Scale Model",
+        desc_finances: "Monthly financial projections in Colombian Pesos (COP) based on active techs and splits with the investor (20%).",
         th_client: "Client",
         th_service: "Service",
         th_time: "Time",
@@ -1127,6 +1185,13 @@
         th_outreach: "B2B Outreach",
         th_candidate: "Candidate",
         th_academy: "Academy",
+        th_milestone: "Milestone (Techs)",
+        th_revenue: "Gross Revenue",
+        th_payout_tech: "Tech Payout (50%)",
+        th_op_costs: "Operating Costs",
+        th_net_profit: "Net Profit",
+        th_payout_investor: "Investor Payout (20%)",
+        th_payout_yesenia: "Yesenia Payout (80% + Personal)",
         lbl_client: "Client",
         lbl_service: "Service",
         lbl_date: "Date",
@@ -1167,6 +1232,7 @@
       renderClients();
       renderRecruits();
       renderLeads();
+      renderFinances();
       renderMarketingTab(currentMarketingTab || 'ads');
     }
 
@@ -1262,7 +1328,8 @@
         clientes: dict.panel_crm,
         prospectos: dict.nav_leads,
         marketing: "Marketing Hub",
-        reclutamiento: dict.nav_recruits
+        reclutamiento: dict.nav_recruits,
+        finanzas: dict.nav_finances
       };
       document.getElementById("view-title").innerText = titles[viewId] || "Dashboard";
     }
@@ -1275,6 +1342,7 @@
       renderRecruits();
       fetchDashboardLeads();
       loadMarketingHub();
+      renderFinances();
     }
 
     // 1. Appointments Rendering
@@ -1468,7 +1536,7 @@
       }
     }
 
-    // 4. Prospectos B2B leads
+    // 4. B2B Leads
     let localLeadsData = [];
     function fetchDashboardLeads() {
       fetch('data/leads.json')
@@ -1578,6 +1646,33 @@
             <div class="marketing-body" id="text-${title.replace(/\s+/g, '-')}">${bodyText}</div>
             <button class="btn-action btn-action-primary" onclick="copyText('text-${title.replace(/\s+/g, '-')}')">${currentLang==='es'?'Copiar Texto':'Copy Text'}</button>
           </div>
+        `;
+      });
+    }
+
+    // 6. Scale Financial Model Table Rendering
+    const milestones = [
+      { techs: 5, revenue: 29700000, commission: 14850000, costs: 4000000, profit: 10850000, investor: 2170000, yesenia: 13820000 },
+      { techs: 10, revenue: 59400000, commission: 29700000, costs: 8000000, profit: 21700000, investor: 4340000, yesenia: 22500000 },
+      { techs: 15, revenue: 89100000, commission: 44550000, costs: 12000000, profit: 32550000, investor: 6510000, yesenia: 31180000 },
+      { techs: 20, revenue: 118800000, commission: 59400000, costs: 16000000, profit: 43400000, investor: 8680000, yesenia: 39860000 }
+    ];
+
+    function renderFinances() {
+      const body = document.querySelector("#finances-table tbody");
+      body.innerHTML = "";
+      
+      milestones.forEach(m => {
+        body.innerHTML += `
+          <tr>
+            <td><b>${m.techs} ${currentLang === 'es' ? 'Técnicas' : 'Techs'}</b></td>
+            <td>COP $${m.revenue.toLocaleString()}</td>
+            <td>COP $${m.commission.toLocaleString()}</td>
+            <td>COP $${m.costs.toLocaleString()}</td>
+            <td><b>COP $${m.profit.toLocaleString()}</b></td>
+            <td>COP $${m.investor.toLocaleString()}</td>
+            <td style="color:var(--burgundy); font-weight:800;">COP $${m.yesenia.toLocaleString()}</td>
+          </tr>
         `;
       });
     }
